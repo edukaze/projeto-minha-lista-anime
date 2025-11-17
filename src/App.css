@@ -1,38 +1,94 @@
-.App {
-  text-align: center;
+@charset "UTF-8";
+
+/*Typical device breakpoint
+-------------------------
+Pequenas telas até 600px
+Celular:600px até 768px
+Tablet:768px 992px
+desktop:992px até 1200px
+Grandes telas: acima de 1200px
+----------------------------
+ */
+/* ===========================================================
+   transição suave entre cores
+   =========================================================== */
+:root {
+  --radius-default: 12px;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* ===========================================================
+   modo claro
+   =========================================================== */
+:root[data-theme="light"] {
+  --cor-primaria: #87F5FB;
+
+  /* Backgrounds */
+  --bg-base: #E9FCFE;
+  --bg-hover: #A2E1E8;
+
+  /* Texto */
+  --texto-primario: #0F2B3A;
+  --text-secundario: #355A67;
+
+  /* Ações e destaques */
+  --acao-primaria: #FF7A59;
+  --acao-secundaria: #1BC4B1;
+
+  /* Bordas */
+  --borda: #8ED4DD;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ===========================================================
+   Modo escuro
+   =========================================================== */
+:root[data-theme="escuro"] {
+  --cor-primaria: #37123C;
+
+  /* fundos */
+  --bg-base: #1F0A24;
+  --bg-hover: #4A1F57;
+  /* Texto */
+  --text-primario: #E5DFF7;
+  --text-secundario: #C9B7E5;
+  /* Ações e destaques */
+  --acao-primaria: #F2A900;
+  --acao-secundaria: #FF5F7E;
+  /* Bordas */
+  --borda: #4A1F57;
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ===========================================================
+   Fontes
+   =========================================================== */
+
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Russo+One&family=VT323&display=swap');
+
+  :root {
+  --font-titulo: "Russo One", sans-serif;
+  --font-texto: "VT323", monospace;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* ===========================================================
+   FISH MOBILE
+   =========================================================== */
+
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body{
+  background-color: var(--bg-base);
+
+}
+
+h1{
+  background-color: var(--color-primary);
+  font-family: var(--font-titulo);
 }
