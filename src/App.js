@@ -1,6 +1,11 @@
+import Header from "./componentes/Hearder/Header";
+
 function App() {
   return (
-    <h1>MyGameList</h1>
+    <Header>
+
+    </Header>
+    
   );
 }
 
