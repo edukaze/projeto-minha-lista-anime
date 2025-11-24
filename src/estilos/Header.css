@@ -104,9 +104,10 @@ h1.logo{
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.37);
   border-radius: 50%;
   cursor: pointer;
-  background: var(--btn-bg);
+  background: var(--acao-secundaria);
   color: var(--btn-icon);
   font-size: 1.6rem;
+  margin-left: 15PX;
   transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 

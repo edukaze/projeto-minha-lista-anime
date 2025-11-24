@@ -51,10 +51,10 @@ function Header() {
           <li><a href="#"><FontAwesomeIcon icon={faUser} /> PERFIL</a></li>
 
           {/* botao do tema */}
-          <li id="tema">
+          <li id="tema"><a href="#">TEMA</a>
             <button onClick={trocarTema} className="btn-tema">
               <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
-            </button><a href=""></a>
+            </button>
           </li>
         </ul>
       </nav>
