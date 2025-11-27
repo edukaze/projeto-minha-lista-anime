@@ -1,6 +1,16 @@
+import Header from "./componentes/Hearder/Header";
+import Home from "./paginas/Home";
+
+
 function App() {
   return (
-    <h1>MyGameList</h1>
+      <>
+          <Header />    
+          <Home>
+          
+          </Home>
+      </>
+    
   );
 }
 

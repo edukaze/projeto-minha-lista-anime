@@ -14,14 +14,16 @@ Grandes telas: acima de 1200px
    =========================================================== */
 :root {
   --radius-default: 12px;
-  --transition-fast: 0.2s ease;
+  --transition-rapida: 0.2s ease;
   --transition-normal: 0.35s ease;
+  --font-titulo: "Russo One", sans-serif;
+  --font-texto: "VT323", monospace;
 }
 
 /* ===========================================================
    modo claro
    =========================================================== */
-:root[data-theme="light"] {
+:root[data-tema="claro"] {
   --cor-primaria: #87F5FB;
 
   /* Backgrounds */
@@ -30,7 +32,7 @@ Grandes telas: acima de 1200px
 
   /* Texto */
   --texto-primario: #0F2B3A;
-  --text-secundario: #355A67;
+  --texto-secundario: #355A67;
 
   /* Ações e destaques */
   --acao-primaria: #FF7A59;
@@ -38,25 +40,32 @@ Grandes telas: acima de 1200px
 
   /* Bordas */
   --borda: #8ED4DD;
+
+  --btn-bg: #e6e6e6;
+  --btn-icon: #333;
 }
 
 /* ===========================================================
    Modo escuro
    =========================================================== */
-:root[data-theme="escuro"] {
+:root[data-tema="escuro"] {
   --cor-primaria: #37123C;
 
   /* fundos */
   --bg-base: #1F0A24;
   --bg-hover: #4A1F57;
   /* Texto */
-  --text-primario: #E5DFF7;
-  --text-secundario: #C9B7E5;
+  --texto-primario: #E5DFF7;
+  --texto-secundario: #C9B7E5;
   /* Ações e destaques */
   --acao-primaria: #F2A900;
   --acao-secundaria: #FF5F7E;
   /* Bordas */
   --borda: #4A1F57;
+
+  /* botao */
+  --btn-bg: #333;
+  --btn-icon: #fff;
 
 }
 
@@ -67,10 +76,6 @@ Grandes telas: acima de 1200px
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Russo+One&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Russo+One&family=VT323&display=swap');
 
-  :root {
-  --font-titulo: "Russo One", sans-serif;
-  --font-texto: "VT323", monospace;
-}
 
 
 /* ===========================================================
@@ -89,6 +94,6 @@ body{
 }
 
 h1{
-  background-color: var(--color-primary);
+ 
   font-family: var(--font-titulo);
 }
