@@ -1,0 +1,101 @@
+
+#home {
+    margin-top: 80px; /* evita que o header cubra a home */
+    padding: 20px;
+}
+
+
+.pesquisa-container {
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* INPUT */
+.pesquisa-input {
+    width: 100%;
+    max-width: 500px; /* mantém bonito no desktop depois */
+    padding: 12px 15px;
+    
+
+    border: none;
+    outline: none;
+
+    background-color: var(--bg-hover);
+    color: var(--texto-primario);
+    font-family: var(--font-texto);
+    font-size: 1.6em;
+
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+
+    transition: 0.2s;
+}
+
+/* Efeito ao clicar */
+.pesquisa-input:focus {
+    box-shadow: 0 0 0 2px var(--texto-primario);
+}
+
+.banner {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.banner h2 {
+    font-family: var(--font-titulo);
+    font-size: 2.3em;
+    margin-bottom: 10px;
+    color: var(--texto-primario);
+}
+
+.banner p {
+    font-family: var(--font-texto);
+    font-size: 1.5em;
+    color: var(--texto-secundario);
+}
+
+/* Títulos das seções */
+#home h3 {
+    font-family: var(--font-titulo);
+    margin: 15px 0;
+    font-size: 1.8em;
+    color: var(--texto-primario);
+}
+
+/* LISTAS COM ROLAGEM HORIZONTAL */
+.lista-jogos,
+.discucoes,
+.lancamento {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+/* esconder a barra de rolagem no mobile */
+.lista-jogos::-webkit-scrollbar,
+.lancamento::-webkit-scrollbar,
+.discucoes::-webkit-scrollbar {
+    display: none;
+}
+
+/* Cards */
+.jogo-card,
+.lancamentos-card,
+.discucoes-card {
+    min-width: 200px;
+    height: 120px;
+    background-color: var(--bg-hover);
+    border-radius: 12px;
+    padding: 10px;
+    color: var(--texto-primario);
+    font-family: var(--font-texto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.281);
+}
+
