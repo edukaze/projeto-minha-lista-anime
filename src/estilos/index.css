@@ -29,6 +29,7 @@ Grandes telas: acima de 1200px
   /* Backgrounds */
   --bg-base: #E9FCFE;
   --bg-hover: #A2E1E8;
+  --bg-input: #cfecf0;
 
   /* Texto */
   --texto-primario: #0F2B3A;
@@ -54,6 +55,7 @@ Grandes telas: acima de 1200px
   /* fundos */
   --bg-base: #1F0A24;
   --bg-hover: #4A1F57;
+  --bg-input:#4d205a;
   /* Texto */
   --texto-primario: #E5DFF7;
   --texto-secundario: #C9B7E5;
@@ -61,7 +63,7 @@ Grandes telas: acima de 1200px
   --acao-primaria: #F2A900;
   --acao-secundaria: #FF5F7E;
   /* Bordas */
-  --borda: #4A1F57;
+  --borda: #8424a1;
 
   /* botao */
   --btn-bg: #333;

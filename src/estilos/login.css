@@ -1,0 +1,84 @@
+
+
+.tela-login, .tela-cadastro {
+    padding: 20px;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-login, .card-cadastro {
+    width: 90%;
+    max-width: 350px;
+    background: var(--bg-card);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.226);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-login h2, h1 {
+    text-align: center;
+    font-size: 2.5em;
+    font-family: var(--font-titulo);
+    color: var(--texto-primario);
+}
+.card-cadastro h2, h1{
+    text-align: center;
+    font-size: 2.5em;
+    font-family: var(--font-titulo);
+    color: var(--texto-primario);
+}
+
+
+.card-login label, .card-cadastro label {
+    font-size: 1.5em;
+    font-family: var(--font-texto);
+    color: var(--texto-secundario);
+    text-align: center;
+}
+
+.card-login input  {
+    padding: 15px;
+    font-size: 1.3em;
+    font-family: var(--font-texto);
+    border-radius: 10px 14px;
+    border: 2px solid var(--borda);
+    background: var(--bg-input);
+    color: var(--texto-primario);
+}
+.card-cadastro input{
+    padding: 12px;
+    font-size: 1.3em;
+    font-family: var(--font-texto);
+    border-radius: 10px 14px;
+    border: 2px solid var(--borda);
+    background: var(--bg-input);
+    color: var(--texto-primario);
+}
+
+.btn-login, .btn-cadastro {
+    padding: 10px;
+    background: var(--acao-secundaria);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.4em;
+    cursor: pointer;
+}
+
+.trocar {
+    text-align: center;
+    font-size: 1.2em;
+    color: var(--texto-secundario);
+}
+
+.trocar .cadastro, .login  {
+    margin-left: 7px;
+    font-weight: bold;
+    color: var(--texto-secundario);
+}
