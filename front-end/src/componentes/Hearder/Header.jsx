@@ -1,9 +1,17 @@
 import "../../estilos/Header.css";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, useNavigate } from "react-router-dom";
 import { faBars, faXmark, faHouse, faGamepad, faUsers, faUser, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
+
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
+  const [logado, setLogado] = useState(false);
 
   const [menuAberto, setMenuAberto] = useState(false);
 
@@ -28,6 +36,12 @@ function Header() {
     document.documentElement.setAttribute("data-tema", tema);
     localStorage.setItem("tema", tema); 
   }, [tema]);
+
+  //verificar se tem usuario logado 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setLogado(!!token);
+  }, []);
 
   return (
     <header id="header">
@@ -55,7 +69,14 @@ function Header() {
             <button onClick={trocarTema} className="btn-tema">
               <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
             </button>
+            </li>
+            
+            {/* so aparece se tive logado*/}
+            {logado && (
+           <li id="logout" onClick={logout} style={{ cursor: "pointer" }}>
+            SAIR
           </li>
+          )}
         </ul>
       </nav>
     </header>
