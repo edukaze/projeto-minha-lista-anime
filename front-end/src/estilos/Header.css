@@ -2,9 +2,10 @@
 
 
 header#header{
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
+    z-index: 1000;
     padding: 15px;
     width: 100%;
     background-color: var(--cor-primaria);
@@ -70,12 +71,28 @@ h1.logo{
   gap: 20px;
 }
 
-.menu-mobile a {
-  text-decoration: none;
+.menu-mobile ul li  {
   color: var(--text-secundario);
   font-family: var(--font-texto);
-  font-size: 2.3em;
+  font-size: 2.5em;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* espaçamento entre o ícone e o texto */
+  cursor: pointer;
 }
+.menu-mobile ul li a {
+  text-decoration: none;
+  color: inherit;     /* mantém a cor do li */
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+  #logout {
+  color: var(--acao-primaria);
+  font-weight: bold;
+}
+
 
 /* botão de fechar */
 .menu-mobile .fechar {
@@ -98,16 +115,15 @@ h1.logo{
 /*botao sol e lua */
 
 .btn-tema {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border: 2px 2px 2px solid var(--borda);
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.37);
   border-radius: 50%;
   cursor: pointer;
   background: var(--acao-secundaria);
   color: var(--btn-icon);
-  font-size: 1.6rem;
-  margin-left: 15PX;
+  font-size: 1.5rem;
   transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
