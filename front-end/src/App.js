@@ -5,7 +5,7 @@ import Home from "./paginas/Home";
 import Jogos from "./paginas/Jogos";
 import Login from "./paginas/Login";
 import Cadastro from "./paginas/Cadastro";
-import RotaProtegida from "./componentes/RotaProtegida";
+import RotaProtegida from "./routes/RotaProtegida";
 
 
 function App() {
@@ -19,61 +19,56 @@ function App() {
   return (
       
   <BrowserRouter>
-      <Routes>
+  <Routes>
 
-        {/* ROTAS SEM HEADER */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
+    {/* PÚBLICAS */}
+    <Route path="/login" element={<Login />} />
+    <Route path="/cadastro" element={<Cadastro />} />
 
-        {/* ROTAS COM HEADER */}
+    <Route
+      path="/"
+      element={
+        <>
+          <Header />
+          <Home />
+        </>
+      }
+    />
 
-       
-        {/* ROTAS PÚBLICAS
-        
-        <Route path="/comunidade" element={<Comunidade />}></Route>
-        */}
-        <Route path="/jogos" element={
-          <>
-            <Header/>
-            <Jogos/>  
-          </>
-          }>
+    <Route
+      path="/jogos"
+      element={
+        <>
+          <Header />
+          <Jogos />
+        </>
+      }
+    />
 
-        </Route>
+    <Route
+      path="/comunidade"
+      element={
+        <>
+          <Header />
+          {/* <Comunidade /> */}
+        </>
+      }
+    />
 
-        
+    {/* PROTEGIDAS */}
+    <Route
+      path="/perfil"
+      element={
+        <RotaProtegida>
+          <Header />
+          {/* <Perfil /> */}
+        </RotaProtegida>
+      }
+    />
 
-         {/* ROTAS PROTEGIDAS */}
-        <Route path="/perfil" element={
-          <RotaProtegida>
-            
-          </RotaProtegida>
-        } />
+  </Routes>
+</BrowserRouter>
 
-        <Route path="Perfil" element={
-          <RotaProtegida>
-           
-          </RotaProtegida>
-        }/>
-
-        <Route path="jogos" element={
-          <RotaProtegida>
-            
-          </RotaProtegida>
-        }/>
-
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Home />
-            </>
-          }
-        />
-
-      </Routes>
-    </BrowserRouter>
   );
 }
 

@@ -32,41 +32,48 @@ module.exports = {
             return res.status(500).json({ erro: err.message });
         }
     },
-async login(req,res){
+async login(req, res) {
+  try {
+    const { email, username, senha } = req.body;
 
-    const {email, username,senha} = req.body;
-    
+    if ((!email && !username) || !senha) {
+      return res.status(400).json({ erro: "Informe email ou username e senha" });
+    }
 
-    //ultizando desestruturação pegando o resultado feito pela query  colocando dentro de usuarios e o resultado dessa requisição coloca em userRowns
     const { rows: userRows } = await pool.query(
-            "SELECT id, username, senha FROM usuarios WHERE username = $1 OR email = $2",
-            [username, email]
-        );
+      "SELECT id, username, email, senha FROM usuarios WHERE username = $1 OR email = $2",
+      [username || null, email || null]
+    );
 
-    if(userRows.length=== 0){
-        return res.status(404).json({erro: "Usuário não encontrado"});
+    if (userRows.length === 0) {
+      return res.status(404).json({ erro: "Usuário não encontrado" });
     }
 
     const user = userRows[0];
 
     const valido = await bcrypt.compare(senha, user.senha);
-    
-    if(!valido){
-        return res.status(401).json({erro: "Senha incorreta"});
+
+    if (!valido) {
+      return res.status(401).json({ erro: "Senha incorreta" });
     }
 
     const token = jwt.sign(
-        {id: user.id},
-        process.env.JWT_SECRET,
-        {expiresIn: "7d"}
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" }
     );
 
-        res.json({
-            msg:"Logado",
-            token,
-            user: { id: user.id, username: user.username }
-        });
-    } 
-};
+    return res.json({
+      usuario: {
+        id: user.id,
+        username: user.username,
+        email: user.email,
+      },
+      token,
+    });
 
-
+  } catch (err) {
+    return res.status(500).json({ erro: err.message });
+  }
+}
+}

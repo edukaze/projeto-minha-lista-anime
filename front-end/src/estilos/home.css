@@ -13,7 +13,7 @@
 }
 
 /* INPUT */
-.pesquisa-input {
+.imput-pesquisa {
     width: 100%;
     max-width: 500px; /* mantém bonito no desktop depois */
     padding: 12px 15px;
@@ -34,7 +34,7 @@
 }
 
 /* Efeito ao clicar */
-.pesquisa-input:focus {
+.imput-pesquisa:focus {
     box-shadow: 0 0 0 2px var(--texto-primario);
 }
 

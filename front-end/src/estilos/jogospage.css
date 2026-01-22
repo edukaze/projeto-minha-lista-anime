@@ -1,0 +1,216 @@
+/* CONTAINER PRINCIPAL */
+.jogos-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px;
+  background: var(--bg-base);
+  color: var(--texto-primario);
+}
+
+/* INPUT */
+
+.pesquisa-container {
+    width: 80%;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.pesquisa-input {
+    width:100%;
+    padding: 12px 15px;
+    
+    margin-top: 20px;
+    border: none;
+    outline: none;
+
+    background-color: var(--bg-hover);
+    color: var(--texto-primario);
+    font-family: var(--font-texto);
+    font-size: 1.6em;
+
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+
+    transition: 0.2s;
+}
+
+/* Efeito ao clicar */
+.pesquisa-input:focus {
+    box-shadow: 0 0 0 2px var(--texto-primario);
+}
+
+/* -------------------------
+   LISTAGEM DE JOGOS
+-------------------------- */
+
+.jogos-lista {
+  display: flex ;
+  flex-direction: row ;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* CARD */
+.jogo-card {
+  height: 160px;
+  width: 140px;
+  display: flex;
+  flex-flow: column ;
+  align-items: center;
+  justify-content: space-around;
+  gap: 7px;
+  padding: 4px;
+  background: var(--bg-hover);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+
+.titulo-mini {
+  font-size: 1.2rem;
+  color: var(--texto-primario);
+}
+
+
+/* IMAGEM */
+.jogo-imagem {
+  width: 120px;
+  height: 120px;
+  object-fit: hidden;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+/* INFO */
+.jogo-info h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--texto-primario);
+}
+
+.jogo-info p {
+  margin: 5px 0;
+  font-size: 15px;
+  color: var(--texto-secundario);
+}
+.modal-fundo {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-conteudo {
+  background: var(--bg-base);
+  padding: 25px;
+  margin-top: 50px;
+  border-radius: 14px;
+  width: 65%;
+  max-width: 350px;
+  animation: zoomIn 0.25s ease;
+  text-align: center;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.status-botoes {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  justify-content: center;
+}
+
+.status-botoes button {
+  padding: 8px 14px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  background: var(--acao-primaria);
+  color: var(--texto-primario);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.status-botoes button:hover {
+  background: var(--acao-secundaria);
+}
+
+.status-botoes button.ativo {
+  background: transparent;
+  border-color: var(--acao-primaria);
+  color: var(--acao-primaria);
+}
+.modal-fechar {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background: var(--cor-primaria);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+
+
+/* PAGINAÇÃO */
+.paginacao {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.paginacao button {
+  padding: 8px 16px;
+  background: var(--acao-primaria);
+  border: none;
+  color: var(--btn-icon);
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.paginacao button:hover:not(:disabled) {
+  background: var(--acao-secundaria);
+}
+
+.paginacao button:disabled {
+  background: var(--borda);
+  cursor: not-allowed;
+}
+
+/* MENSAGENS */
+.carregando,
+.nenhum-jogo {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 30px;
+  color: var(--texto-secundario);
+}

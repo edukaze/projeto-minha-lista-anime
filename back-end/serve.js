@@ -1,28 +1,31 @@
 require("dotenv").config();
 const express = require("express");
-const cors =  require("cors");
-const multer = require ("multer");
+const cors = require("cors");
+const multer = require("multer");
+
 const upload = multer();
 const app = express();
 
-//permite JSON no body
+// middlewares globais
+app.use(cors({
+  origin: "http://localhost:3000", 
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"] // LIBERA O TOKEN
+}));
 app.use(express.json());
-app.use(cors());
+app.use(upload.none()); // 👈 antes das rotas
 
-//importar as rotas
+// importar rotas
 const rotas = require("./src/rotas");
 
-// Permite dados multipart/form-data (FormData)
-app.use(upload.none());
-
-// Usar as rotas
+// usar rotas
 app.use("/api", rotas);
 
-
-app.get("/", (req, res)=>{
-    res.send("Servidor rodando")
+app.get("/", (req, res) => {
+  res.send("Servidor rodando");
 });
-// iniciar o servidor
+
+// iniciar servidor
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
