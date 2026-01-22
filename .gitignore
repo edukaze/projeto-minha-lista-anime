@@ -1,7 +1,8 @@
 # ===============================
 #  IGNORAR DEPENDÊNCIAS
 # ===============================
-/node_modules/
+# Dependências (Nunca envie as pastas node_modules, elas são muito pesadas)
+node_modules/
 back-end/node_modules/
 front-end/node_modules/
 
