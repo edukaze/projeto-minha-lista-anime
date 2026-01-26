@@ -8,6 +8,8 @@ const {
     listarStatus,
     excluirStatus
 } = require("./controladores/controllerGameStatus");
+const controllerAvaliacao = require("./controladores/controllerAvaliacao")
+
 
 //middleware
 const autenticar = require("./middlewares/autenticar")
@@ -20,6 +22,7 @@ router.get("/jogos", listarJogos);
 router.get("/status", autenticar, listarStatus);
 router.post("/status", autenticar, salvarStatusGame);
 router.delete("/status/:game_id", autenticar, excluirStatus);
+router.post("/avaliar", autenticar, controllerAvaliacao.salvarOuAtualizarAvaliacao);
 
 
 module.exports = router;

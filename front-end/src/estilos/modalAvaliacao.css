@@ -1,0 +1,94 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background-color: var(--bg-base);
+  border: 2px solid var(--borda);
+  padding: 30px;
+  border-radius: var(--radius-default);
+  text-align: center;
+  position: relative;
+  max-width: 400px;
+  width: 90%;
+}
+
+.estrelas-container {
+  margin: 20px 0;
+  font-size: 3.5rem;
+}
+
+.estrela {
+  cursor: pointer;
+  color: var(--texto-secundario);
+  transition: color 0.2s;
+}
+
+.estrela.ativa {
+  color: #fbbf24; 
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+.btn-salvar-avaliacao {
+  background-color: var(--acao-secundaria);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1.5em;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: var(--texto-primario);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.comentario-container {
+  margin: 15px 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.comentario-container label {
+  color: var(--texto-secundario);
+  font-size: 1.5em;
+  margin-bottom: 8px;
+  font-family: var(--font-texto);
+}
+
+.comentario-container textarea {
+  background-color: var(--bg-input); 
+  border: 2px solid var(--borda);
+  border-radius: 8px;
+  font-size: 1.5em;
+  color: var(--texto-primario);
+  padding: 12px;
+  font-family: var(--font-texto);
+  resize: none; 
+  height: 100px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.comentario-container textarea:focus {
+  border-color: var(--detalhe-roxo); 
+}

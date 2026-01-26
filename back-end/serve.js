@@ -13,7 +13,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"] // LIBERA O TOKEN
 }));
 app.use(express.json());
-app.use(upload.none()); // 👈 antes das rotas
+app.use(upload.none()); //  antes das rotas
 
 // importar rotas
 const rotas = require("./src/rotas");

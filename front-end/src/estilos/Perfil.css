@@ -3,7 +3,6 @@
    =========================================================== */
 .perfil-container {
   padding: 20px;
-  min-height: 100vh;
   background-color: var(--bg-base); /* */
   color: var(--texto-primario);
   transition: background-color var(--transition-normal);
@@ -15,6 +14,7 @@
   margin-bottom: 30px;
   color: var(--texto-primario);
 }
+
 
 /* ===========================================================
    SEÇÕES MINIMIZÁVEIS (ACCORDION)
@@ -68,6 +68,8 @@
 /* ===========================================================
    CARD DO JOGO
    =========================================================== */
+
+   
 .card-perfil {
   background-color: var(--bg-input);
   border: 2px solid var(--borda);
@@ -205,9 +207,9 @@
 
 /* Ajuste para quando o botão estiver ATIVO (selecionado) */
 .btn-status-chip.ativo-jogando {
-  background: rgba(74, 222, 128, 0.1); /* Fundo sutil verde */
+  background: rgba(9, 221, 87, 0.37); /* Fundo sutil verde */
   border-color: #4ade80;
-  color: #4ade80;
+  color: #104925;
 }
 /* Estado ATIVO para o botão ZERADO */
 .btn-status-chip.ativo-zerado {
@@ -229,4 +231,30 @@
 .btn-status-chip:not([class*='ativo-']):hover {
   background-color: var(--bg-hover); /* */
   border-color: var(--cor-primaria);
+}
+
+/* mensagem de erro ou deu certo */
+.feedback-toast {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color:var(--acao-secundaria); 
+  color: #ffffff;
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: slideDown 0.5s ease-out;
+  font-family: var(--font-texto);
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes slideDown {
+  from { top: -100px; opacity: 0; }
+  to { top: 50px; opacity: 1; }
 }
