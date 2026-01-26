@@ -5,6 +5,7 @@ import Home from "./paginas/Home";
 import Jogos from "./paginas/Jogos";
 import Login from "./paginas/Login";
 import Cadastro from "./paginas/Cadastro";
+import Perfil from "./paginas/Perfil";
 import RotaProtegida from "./routes/RotaProtegida";
 
 
@@ -61,7 +62,7 @@ function App() {
       element={
         <RotaProtegida>
           <Header />
-          {/* <Perfil /> */}
+          <Perfil /> 
         </RotaProtegida>
       }
     />

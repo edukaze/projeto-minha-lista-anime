@@ -6,6 +6,7 @@ const {listarJogos} = require("./controladores/gamesController");
 const {
     salvarStatusGame,
     listarStatus,
+    excluirStatus
 } = require("./controladores/controllerGameStatus");
 
 //middleware
@@ -18,6 +19,7 @@ router.get("/jogos", listarJogos);
 //  protegidas
 router.get("/status", autenticar, listarStatus);
 router.post("/status", autenticar, salvarStatusGame);
+router.delete("/status/:game_id", autenticar, excluirStatus);
 
 
 module.exports = router;

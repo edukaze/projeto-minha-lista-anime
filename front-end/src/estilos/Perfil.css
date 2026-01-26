@@ -1,0 +1,232 @@
+/* ===========================================================
+   CONTAINER PRINCIPAL
+   =========================================================== */
+.perfil-container {
+  padding: 20px;
+  min-height: 100vh;
+  background-color: var(--bg-base); /* */
+  color: var(--texto-primario);
+  transition: background-color var(--transition-normal);
+}
+
+.perfil-container h1 {
+  text-align: center;
+  font-family: var(--font-titulo);
+  margin-bottom: 30px;
+  color: var(--texto-primario);
+}
+
+/* ===========================================================
+   SEÇÕES MINIMIZÁVEIS (ACCORDION)
+   =========================================================== */
+.status-sections section {
+  margin-bottom: 25px;
+}
+
+/* Cabeçalho com a linha que vai até o final */
+.secao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 10px 5px;
+  border-bottom: 3px solid var(--borda); /* Linha completa */
+  margin-bottom: 20px;
+  transition: filter var(--transition-rapida);
+}
+
+.secao-header:hover {
+  filter: brightness(1.3);
+}
+
+.secao-header h2 {
+  font-family: var(--font-titulo);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.seta-icone {
+  font-size: 1.2rem;
+  color: var(--texto-secundario);
+}
+
+/* Cores dos títulos das seções */
+.titulo-jogando { color: #4ade80; }
+.titulo-zerado { color: var(--acao-secundaria); }
+.titulo-dropado { color: var(--acao-primaria); }
+
+/* ===========================================================
+   GRID DE JOGOS (MOBILE FIRST)
+   =========================================================== */
+.jogos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  padding-bottom: 20px;
+}
+
+/* ===========================================================
+   CARD DO JOGO
+   =========================================================== */
+.card-perfil {
+  background-color: var(--bg-input);
+  border: 2px solid var(--borda);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-rapida);
+}
+
+.card-perfil:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  position: relative;
+  width: 100%;
+  height: 220px;
+}
+
+.card-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Pontinhos de opções no topo do card */
+.opcoes-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+}
+
+.opcoes-btn {
+  background: rgba(0, 0, 0, 0.7); 
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column; 
+  gap: 3px;
+  width: 32px; 
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.dot {
+  width: 4px;
+  height: 4px;
+  background-color: #ffffff; 
+  border-radius: 50%;
+  display: block; 
+}
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  background-color: var(--bg-input); /* */
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-default);
+  box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  width: 140px;
+  overflow: hidden;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 12px;
+  color: var(--texto-primario);
+  font-family: var(--font-texto);
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.dropdown-menu button:hover {
+  background-color: var(--bg-hover);
+}
+
+.dropdown-menu .btn-excluir {
+  color: var(--acao-primaria); /* Cor de alerta/erro */
+  border-top: 1px solid var(--borda);
+}
+.card-body {
+  padding: 15px;
+  text-align: center;
+}
+
+.card-body h3 {
+  font-family: var(--font-texto);
+  color: var(--texto-primario);
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  min-height: 2.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===========================================================
+   BOTÕES DE STATUS (CHIPS)
+   =========================================================== */
+.status-badge-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-status-chip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha o ícone e texto à esquerda */
+  gap: 12px;
+  padding: 10px 15px;
+  width: 100%; /* Garante que ocupem a largura do card */
+  
+  /* REMOVE O ESTILO BUGADO DO NAVEGADOR */
+  background: none; 
+  border: 1px solid var(--borda);
+  border-radius: var(--radius-default);
+  color: var(--texto-primario);
+  
+  font-family: var(--font-texto);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-rapida);
+}
+
+/* Ajuste para quando o botão estiver ATIVO (selecionado) */
+.btn-status-chip.ativo-jogando {
+  background: rgba(74, 222, 128, 0.1); /* Fundo sutil verde */
+  border-color: #4ade80;
+  color: #4ade80;
+}
+/* Estado ATIVO para o botão ZERADO */
+.btn-status-chip.ativo-zerado {
+  background-color: var(--acao-secundaria); /* Rosa/Roxo vibrante do seu tema */
+  border-color: var(--acao-secundaria);
+  color: white; /* Texto branco para dar contraste como na imagem */
+  font-weight: bold;
+}
+
+/* Estado ATIVO para o botão DROPADO */
+.btn-status-chip.ativo-dropado {
+  background-color: var(--acao-primaria); /* Laranja/Vermelho do seu tema */
+  border-color: var(--acao-primaria);
+  color: white;
+  font-weight: bold;
+}
+
+/* Efeito de Hover (passar o mouse) para todos os botões não ativos */
+.btn-status-chip:not([class*='ativo-']):hover {
+  background-color: var(--bg-hover); /* */
+  border-color: var(--cor-primaria);
+}

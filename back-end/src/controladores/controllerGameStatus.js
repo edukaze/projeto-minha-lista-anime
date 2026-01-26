@@ -9,8 +9,16 @@ async function listarStatus(req, res) {
       return res.status(401).json({ erro: "Usuário não autenticado" });
     }
 
+    // Usamos o JOIN para buscar os dados do jogo junto com o status
     const { rows } = await pool.query(
-      "SELECT game_id, status FROM status_games WHERE usuario_id = $1",
+      `SELECT 
+        gs.game_id, 
+        gs.status, 
+        g.titulo, 
+        g.imagem 
+       FROM status_games gs
+       JOIN games g ON gs.game_id = g.id
+       WHERE gs.usuario_id = $1`,
       [usuarioId]
     );
 
@@ -55,7 +63,29 @@ async function salvarStatusGame(req, res) {
   }
 }
 
+async function excluirStatus(req, res) {
+  const { game_id } = req.params;
+  const usuario_id = req.userId; 
+
+  try {
+    const resultado = await pool.query(
+      "DELETE FROM status_games WHERE usuario_id = $1 AND game_id = $2",
+      [usuario_id, game_id]
+    );
+
+    if (resultado.rowCount === 0) {
+      return res.status(404).json({ erro: "Jogo não encontrado na sua lista" });
+    }
+
+    res.json({ msg: "Removido com sucesso" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ erro: "Erro interno ao deletar" });
+  }
+}
+
 module.exports = {
   listarStatus,
-  salvarStatusGame
+  salvarStatusGame,
+  excluirStatus
 };
