@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: "http://localhost:3001/api",
 });
 
-// 👉 INTERCEPTA TODA REQUISIÇÃO
+//  INTERCEPTA TODA REQUISIÇÃO
 api.interceptors.request.use((config) => {
   const token = getToken(); // usa a função centralizada
 
@@ -15,7 +15,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// 👉 INTERCEPTA TODA RESPOSTA
+//  INTERCEPTA TODA RESPOSTA
 api.interceptors.response.use(
   (response) => response,
   (error) => {

@@ -54,6 +54,7 @@
 .titulo-jogando { color: #4ade80; }
 .titulo-zerado { color: var(--acao-secundaria); }
 .titulo-dropado { color: var(--acao-primaria); }
+.titulo-planejado { color: #ffc107; }
 
 /* ===========================================================
    GRID DE JOGOS (MOBILE FIRST)
@@ -224,6 +225,12 @@
   background-color: var(--acao-primaria); /* Laranja/Vermelho do seu tema */
   border-color: var(--acao-primaria);
   color: white;
+  font-weight: bold;
+}
+.btn-status-chip.ativo-planejado {
+  background-color: rgba(255, 193, 7, 0.37); /* Fundo amarelo suave */
+  border-color: var(--acao-primaria);
+  color: var(--texto-primario);
   font-weight: bold;
 }
 

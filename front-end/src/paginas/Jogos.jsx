@@ -3,18 +3,22 @@ import JogosService from "../services/JogosService";
 import { estaLogado } from "../services/auth";
 import "../estilos/jogospage.css";
 import { listarStatus, salvarStatusGame } from "../services/statusService";
+import BarraBusca from "../componentes/BarraBusca";
+import ModalJogo from "../componentes/ModalJogo";
+import GameCard from "../componentes/GameCard";
 
 function Jogos() {
   const [jogos, setJogos] = useState([]);
   const [page, setPage] = useState(1);
   const usuarioLogado = estaLogado();
+  const [busca, setBusca] = useState("");
 
   // itens por página dinâmicos conforme a largura da tela
-  const calcularItensPorPagina = () => {
+const calcularItensPorPagina = () => {
     const largura = window.innerWidth;
-    if (largura >= 1400) return 16;
+    if (largura >= 1400) return 18;
     if (largura >= 1200) return 12;
-    if (largura >= 992) return 9;
+    if (largura >= 992) return 12;
     if (largura >= 768) return 8;
     return 6;
   };
@@ -57,21 +61,16 @@ function Jogos() {
         setLoading(true);
 
         // Chama a API com page e limit (itensPorPagina)
-        const res = await JogosService.getJogos(pagina, itensPorPagina);
-
+        const res = await JogosService.getJogos(pagina, itensPorPagina, busca);
+        //console.log("Resposta da API:", res);
         // DEBUG importante — abre o console e verifique estes logs
         //console.log("API raw response:", res);
 
         // Detecta onde vem a lista (sua API pode retornar formatos diferentes)
-        const lista =
-          (res.data && (res.data.data || res.data.jogos || res.data.results)) ||
-          (Array.isArray(res.data) ? res.data : []);
+        const lista = res.jogos || [];
 
         // Detecta totalPages de forma segura
-        const paginas =
-          (res.data && (res.data.totalPages || res.data.total_pages || res.data.pages)) ||
-          res.totalPages ||
-          1;
+        const paginas = res.totalPages || 1;
 
         setJogos(lista);
         setTotalPages(Number(paginas) || 1);
@@ -86,14 +85,23 @@ function Jogos() {
         setLoading(false);
       }
     },
-    [itensPorPagina]
+    [itensPorPagina, busca]
   );
 
   // Recarrega sempre que page OU itensPorPagina mudarem.
-  // Note: itensPorPagina já seta page=1 na mudança (veja useEffect acima).
-  useEffect(() => {
-    carregar(page);
+  // Note: itensPorPagina já seta page=1 na mudança 
+ useEffect(() => {
+    // Implementação de Debounce: evita chamadas excessivas ao digitar na busca
+    const delayBusca = setTimeout(() => {
+      carregar(page);
+    }, 500);
+
+    return () => clearTimeout(delayBusca);
   }, [page, itensPorPagina, carregar]);
+
+  useEffect(()=>{
+    setPage(1)
+  }, [busca]);
 
   useEffect(() => {
   async function carregarStatus() {
@@ -111,7 +119,8 @@ function Jogos() {
 
   carregarStatus();
 }, []);
-
+  const [mensagemFeedback, setMensagemFeedback] = useState(null);
+  
   async function marcarStatus(jogoId, novoStatus) {
   try {
     await salvarStatusGame(jogoId, novoStatus);
@@ -119,107 +128,67 @@ function Jogos() {
       ...prev,
       [jogoId]: novoStatus
     }));
-  } catch {
-    alert("Você precisa estar logado para marcar status");
+    
+    setMensagemFeedback(`Adicionado à lista: ${novoStatus}`);
+    
+    // Limpa após 3 segundos
+    setTimeout(() => setMensagemFeedback(null), 4000)
+  } catch (error) {
+    setMensagemFeedback("Você precisa estar logado para marcar um status.");
+    setTimeout(() => setMensagemFeedback(null), 7000);
+   
   }
 }
 
-
-  if (loading)
-    return <p style={{ textAlign: "center", color: "white" }}>Carregando...</p>;
-
   return (
     <>
-      {/* Pesquisa */}
-      <section className="pesquisa-container">
-        <input
-          type="text"
-          placeholder="O que está procurando?"
-          className="pesquisa-input"
-        />
-      </section>
 
+    {mensagemFeedback && (
+        <div className="feedback-popup">
+          {mensagemFeedback}
+        </div>
+      )}
+    <header className="jogos-header-topo">
+      <h1>Biblioteca de Jogos</h1>
+      <p>Explore o catálogo e adicione jogos à sua coleção</p>
+    </header>
+
+    
+      <BarraBusca 
+        valor={busca} 
+        setValor={setBusca} 
+        placeholder="Pesquise um jogo para adicionar..." 
+      />
+    
+      
       {/* Lista */}
       <main className="jogos-container">
-        <section className="jogos-lista">
-          {jogos.length === 0 && (
-            <p className="nenhum-jogo">Nenhum jogo encontrado.</p>
-          )}
+        {loading ? (
+          <p style={{ textAlign: "center", color: "white", padding: "20px" }}>Carregando jogos...</p>
+        ) : (
+          <section className="jogos-lista">
+            {jogos.length === 0 && (
+              <p className="nenhum-jogo">Nenhum jogo encontrado.</p>
+            )}
 
-          {jogos.map((jogo) => (
-            <article
-              className="jogo-card"
+            {jogos.map((jogo) => (
+              <GameCard
               key={jogo.id}
-              onClick={() => setJogoSelecionado(jogo)}
-            >
-              <img
-                src={
-                  jogo.imagem ||
-                  "https://via.placeholder.com/120x160?text=Sem+Imagem"
-                }
-                alt={jogo.titulo}
-                className="jogo-imagem"
+              jogo={jogo}
+              onClick = {setJogoSelecionado}
               />
-              <h2 className="titulo-mini">{jogo.titulo}</h2>
-            </article>
-          ))}
-        </section>
+            ))}
+          </section>
+        )}
 
         {/* Modal */}
-        {jogoSelecionado && (
-          <div className="modal-fundo" onClick={() => setJogoSelecionado(null)}>
-            <div className="modal-conteudo" onClick={(e) => e.stopPropagation()}>
-              <img
-                src={
-                  jogoSelecionado.imagem ||
-                  "https://via.placeholder.com/300x200?text=Sem+Imagem"
-                }
-                alt={jogoSelecionado.titulo}
-                className="modal-img"
-              />
-              <h2>{jogoSelecionado.titulo}</h2>
-              <p>Ano: {jogoSelecionado.ano}</p>
-              <p>Desenvolvedora: {jogoSelecionado.desenvolvedora}</p>
-              <p>Plataforma: {jogoSelecionado.plataforma}</p>
-
-              <div className="status-botoes">
-  {usuarioLogado ? (
-    <>
-      <button
-        className={statusJogos[jogoSelecionado.id] === "jogando" ? "ativo" : ""}
-        onClick={() => marcarStatus(jogoSelecionado.id, "jogando")}
-      >
-        Jogando
-      </button>
-
-      <button
-        className={statusJogos[jogoSelecionado.id] === "zerado" ? "ativo" : ""}
-        onClick={() => marcarStatus(jogoSelecionado.id, "zerado")}
-      >
-        Zerado
-      </button>
-
-      <button
-        className={statusJogos[jogoSelecionado.id] === "dropado" ? "ativo" : ""}
-        onClick={() => marcarStatus(jogoSelecionado.id, "dropado")}
-      >
-        Dropado
-      </button>
-    </>
-  ) : (
-    <p style={{ marginTop: "10px", color: "var(--texto-secundario)" }}>
-      Faça login para marcar o status do jogo
-    </p>
-  )}
-              </div>
-
-
-              <button className="modal-fechar" onClick={() => setJogoSelecionado(null)}>
-                Fechar
-              </button>
-            </div>
-          </div>
-        )}
+        <ModalJogo 
+        jogo={jogoSelecionado} 
+        onClose={() => setJogoSelecionado(null)}
+        usuarioLogado={usuarioLogado}
+        statusJogos={statusJogos}
+        onMarcarStatus={marcarStatus}
+        />
       </main>
 
       {/* Paginação */}

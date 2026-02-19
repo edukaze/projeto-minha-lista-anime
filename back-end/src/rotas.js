@@ -9,6 +9,7 @@ const {
     excluirStatus
 } = require("./controladores/controllerGameStatus");
 const controllerAvaliacao = require("./controladores/controllerAvaliacao")
+const ControllerComunidade = require("./controladores/controllerComunidade");
 
 
 //middleware
@@ -17,6 +18,7 @@ const autenticar = require("./middlewares/autenticar")
 //  públicas
 router.post("/login", controladorUser.login);
 router.get("/jogos", listarJogos);
+router.get("/comunidade", ControllerComunidade.listaAvaliaçõesPublicas)
 
 //  protegidas
 router.get("/status", autenticar, listarStatus);

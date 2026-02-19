@@ -29,6 +29,7 @@ Grandes telas: acima de 1200px
   /* Backgrounds */
   --bg-base: #E9FCFE;
   --bg-hover: #A2E1E8;
+  --bg-claro: #abdde2;
   --bg-input: #cfecf0;
 
   /* Texto */
@@ -55,6 +56,7 @@ Grandes telas: acima de 1200px
   /* fundos */
   --bg-base: #1F0A24;
   --bg-hover: #4A1F57;
+  --bg-claro: #49035a8a;
   --bg-input:#4d205a;
   /* Texto */
   --texto-primario: #E5DFF7;

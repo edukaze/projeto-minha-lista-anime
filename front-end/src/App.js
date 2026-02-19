@@ -6,7 +6,9 @@ import Jogos from "./paginas/Jogos";
 import Login from "./paginas/Login";
 import Cadastro from "./paginas/Cadastro";
 import Perfil from "./paginas/Perfil";
+import Comunidade from "./paginas/Comunidade";
 import RotaProtegida from "./routes/RotaProtegida";
+
 
 
 function App() {
@@ -51,7 +53,7 @@ function App() {
       element={
         <>
           <Header />
-          {/* <Comunidade /> */}
+           <Comunidade/>
         </>
       }
     />

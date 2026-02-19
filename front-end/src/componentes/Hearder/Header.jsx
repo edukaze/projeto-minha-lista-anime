@@ -89,7 +89,7 @@ function Header() {
 
           <li>
             <Link to="/comunidade" className="item-header" onClick={fecharMenu}>
-              <FontAwesomeIcon icon={faUsers} /> COMUNIDADE
+              <FontAwesomeIcon icon={faUsers} /> RESENHAS
             </Link>
           </li>
 

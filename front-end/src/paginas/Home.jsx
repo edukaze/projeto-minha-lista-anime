@@ -6,7 +6,7 @@ function Home(){
             {/* banner */}
             <section className="banner">
                 <h2>Bem-Vindo ao MYGamesList</h2>
-                <p>Organize seus Jogos favoritos em um só lugar e interaja com a comunidade!</p>
+                <p>Organize seus Jogos favoritos em um só lugar e deixe suas resenhas!</p>
             </section>
 
 

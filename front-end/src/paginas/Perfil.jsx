@@ -2,6 +2,7 @@ import "../estilos/Perfil.css";
 import React, { useEffect, useState } from "react";
 import { listarStatus, salvarStatusGame, excluirStatusGame } from "../services/statusService";
 import BarraBusca from "../componentes/BarraBusca";
+import ModalConfirmacao from "../componentes/ModalConfirmacao";
 import ModalAvaliacao from "../componentes/ModalAvaliacao";
 import { salvarAvaliacao } from "../services/avaliacaoServise";
 
@@ -19,7 +20,8 @@ const Perfil = () => {
   const [secoesAbertas, setSecoesAbertas] = useState({
     jogando: true,
     zerado: true,
-    dropado: true
+    dropado: true, 
+    planejado: true
   });
 
   // Fecha ou abre o menu de 3 pontos de um jogo específico
@@ -45,20 +47,30 @@ const Perfil = () => {
       setLoading(false);
     }
   };
-
-  // excluir jogo da pagina de perfil
-  const jogoPerfilExcluir = async (gameId) => {
-    if (window.confirm("Deseja remover este jogo da sua lista?")) {
-      try {
-        await excluirStatusGame(gameId); // Chama o service para deletar no banco
-        setMenuAberto(null); // Fecha o menu
-        carregarDadosPerfil(); // Recarrega a lista para sumir o card
-      } catch (error) {
-        console.error("Erro ao excluir:", error);
-        alert("Não foi possível excluir o jogo.");
-      }
-    }
-  };
+  const[confirmacaoExclusao, setConfirmacaoExclusao] = useState({ visivel:false, jogoId:null });
+  // Mude sua função jogoPerfilExcluir para apenas abrir o modal
+ const abrirConfirmacaoExcluir = (gameId) => {
+  setConfirmacaoExclusao({ visivel: true, jogoId: gameId });
+  setMenuAberto(null); // Fecha o menu de 3 pontos
+  }; 
+  
+  // Função que realmente exclui
+const confirmarEExcluir = async () => {
+  const gameId = confirmacaoExclusao.jogoId;
+  try {
+    await excluirStatusGame(gameId);
+    setMensagemFeedback("Jogo removido da sua biblioteca.");
+    setTimeout(() => setMensagemFeedback(null), 3000);
+    carregarDadosPerfil();
+  } catch (error) {
+    console.error("Erro ao excluir:", error);
+    setMensagemFeedback("Erro ao excluir o jogo.");
+  } finally {
+    setConfirmacaoExclusao({ visivel: false, jogoId: null });
+  }
+};
+    
+  
 
   useEffect(() => {
     carregarDadosPerfil();
@@ -82,7 +94,7 @@ const Perfil = () => {
       await salvarAvaliacao(gameId, nota, comentario);
 
       // Define a mensagem de sucesso
-    setMensagemFeedback("Avaliação feita com sucesso! Veja na aba comunidade todas as suas avaliações.");
+    setMensagemFeedback("Avaliação feita com sucesso! Veja na resenhas todas as avaliações.");
     setTimeout(() => setMensagemFeedback(null), 5000);
 
 
@@ -117,7 +129,7 @@ const Perfil = () => {
     )}
 
       <div className="status-sections">
-        {['jogando', 'zerado', 'dropado'].map((categoria) => (
+        {['planejado','jogando', 'zerado', 'dropado'].map((categoria) => (
           <section key={categoria} className={secoesAbertas[categoria] ? "aberta" : "minimizada"}>
             
             <div className="secao-header" onClick={() => mudaSecao(categoria)}>
@@ -158,7 +170,7 @@ const Perfil = () => {
                               }}>
                                 ⭐ Avaliar
                               </button>
-                              <button className="btn-excluir" onClick={() => jogoPerfilExcluir(jogo.game_id)}>
+                              <button className="btn-excluir" onClick={() => abrirConfirmacaoExcluir(jogo.game_id)}>
                                 🗑️ Excluir
                               </button>
                             </div>
@@ -170,12 +182,13 @@ const Perfil = () => {
                         <h3>{jogo.titulo}</h3>
 
                         <div className="status-badge-container">
-                          {['jogando', 'zerado', 'dropado'].map((op) => (
+                          {['planejado','jogando', 'zerado', 'dropado'].map((op) => (
                             <button
                               key={op}
                               className={`btn-status-chip ${jogo.status === op ? 'ativo-' + op : ''}`}
                               onClick={() => handleMudarStatus(jogo.game_id, op)}
                             >
+                              {op === 'planejado' && '📅'}
                               {op === 'jogando' && '🎮'}
                               {op === 'zerado' && '🏆'}
                               {op === 'dropado' && '❌'}
@@ -200,7 +213,17 @@ const Perfil = () => {
           salvarAvaliacao={handleSalvarNota}
         />
       )}
+      
+      {/* Renderização condicional do modal de confirmação de exclusão */}
+      {confirmacaoExclusao.visivel && (
+        <ModalConfirmacao 
+          mensagem="Deseja realmente remover este jogo da sua lista?"
+          aoConfirmar={confirmarEExcluir}
+          aoCancelar={() => setConfirmacaoExclusao({ visivel: false, jogoId: null })}
+        />
+      )}
     </div>
+
   );
 };
 
