@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./componentes/Hearder/Header";
 import Home from "./paginas/Home";
@@ -8,6 +8,7 @@ import Cadastro from "./paginas/Cadastro";
 import Perfil from "./paginas/Perfil";
 import Comunidade from "./paginas/Comunidade";
 import RotaProtegida from "./routes/RotaProtegida";
+import JogoDetalhes from "./componentes/JogoDetalhe";
 
 
 
@@ -48,15 +49,29 @@ function App() {
       }
     />
 
-    <Route
-      path="/comunidade"
-      element={
-        <>
-          <Header />
-           <Comunidade/>
-        </>
-      }
-    />
+ 
+  {/* Rota para a lista da Comunidade */}
+  <Route
+    path="/comunidade"
+    element={
+      <>
+        <Header />
+        <Comunidade />
+      </>
+    }
+  />
+
+  {/* Rota para o Detalhe do Jogo (Fora da outra rota) */}
+  <Route
+    path="/comunidade/jogo/:id"
+    element={
+      <>
+        <Header />
+        <JogoDetalhes />
+      </>
+    }
+  />
+
 
     {/* PROTEGIDAS */}
     <Route

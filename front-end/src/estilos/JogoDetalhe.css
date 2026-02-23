@@ -1,0 +1,106 @@
+.detalhes-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  color: var(--texto-primario);
+  min-height: 100vh;
+}
+
+/* Header com a imagem e título */
+.jogo-header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.capa-jogo {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 2px solid var(--borda-card);
+}
+
+.info-principal h1 {
+  font-family: var(--font-titulo);
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.nota-geral {
+  background: var(--acao-primaria);
+  color: #000;
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Seção de Resenhas */
+.lista-resenhas-especificas {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.lista-resenhas-especificas h2 {
+  margin-bottom: 25px;
+  font-family: var(--font-titulo);
+  border-left: 5px solid var(--acao-secundaria);
+  padding-left: 15px;
+}
+
+.resenha-individual {
+  background: var(--bg-card); /* ou uma variação mais escura */
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s;
+}
+
+.resenha-individual:hover {
+  transform: translateX(10px);
+  border-color: var(--acao-primaria);
+}
+
+.resenha-individual strong {
+  display: block;
+  color: var(--acao-secundaria);
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.resenha-individual span {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.resenha-individual p {
+  margin-top: 15px;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+/* Botão Voltar */
+.btn-voltar {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid var(--texto-primario);
+  color: var(--texto-primario);
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.btn-voltar:hover {
+  background: var(--texto-primario);
+  color: var(--bg-base);
+}

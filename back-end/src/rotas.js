@@ -17,8 +17,10 @@ const autenticar = require("./middlewares/autenticar")
 
 //  públicas
 router.post("/login", controladorUser.login);
+router.post("/cadastrar", controladorUser.cadastrar);
 router.get("/jogos", listarJogos);
 router.get("/comunidade", ControllerComunidade.listaAvaliaçõesPublicas)
+router.get("/comunidade/jogo/:id", ControllerComunidade.buscaDetalhesJogo)
 
 //  protegidas
 router.get("/status", autenticar, listarStatus);

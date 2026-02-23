@@ -1,0 +1,103 @@
+.card-jogo-comunidade {
+  width: 80%;
+  height: auto;
+  background-color: var(--bg-claro);
+  border: 2px solid var(--borda);
+  border-radius: var(--radius-default);
+  overflow: hidden;
+  margin: 15px auto; 
+  transition: var(--transition-rapida);
+  
+}
+
+/* Banner do Jogo no Card */
+.jogo-banner {
+  width: 50vw;
+  height: 240px; 
+  aspect-ratio: 16 / 9;
+  margin:  15px auto;
+  border-radius:  15px 20px;
+  background-size: cover; 
+  background-position: center; 
+  position: relative;
+  display: flex;
+  justify-content:flex-end;
+  align-items: flex-start;
+  padding: 10px;
+  border-bottom: 3px solid var(--borda);
+}
+
+.media-badge {
+  background-color: var(--acao-primaria); /* Laranja/Ouro */
+  color: #000;
+  font-family: var(--font-titulo);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+
+.card-info {
+  padding: 15px;
+}
+
+.card-info h4 {
+  font-family: var(--font-titulo);
+  color: var(--texto-primario);
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.total-txt {
+  font-family: var(--font-texto);
+  color: var(--texto-secundario);
+  font-size: 1.5em;
+  margin-bottom: 12px;
+}
+
+/* Estilo do comentário recente */
+.ultima-atividade {
+  min-height: 50px;
+  background: var(--bg-hover);
+  border-left: 4px solid var(--acao-secundaria);
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.user-highlight {
+  font-family: var(--font-titulo);
+  color: var(--acao-secundaria);
+  font-size: 1.2em;
+  display: block;
+  text-transform: uppercase;
+}
+
+.p-comentario {
+  font-family: var(--font-texto) !important;
+  color: var(--texto-primario) !important; 
+  font-size: 1.2rem;
+  margin: 5px 0 0 0;
+  display: block; 
+}
+
+.card-jogo-comunidade:active {
+  transform: scale(0.96); /* O card encolhe levemente */
+  filter: brightness(1.2); /* Dá um leve brilho */
+  transition: transform 0.1s ease; /* Resposta imediata ao toque */
+}
+
+/* Ajuste no cursor para Desktop (ajuda no desenvolvimento) */
+.card-jogo-comunidade {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.comunidade-container {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

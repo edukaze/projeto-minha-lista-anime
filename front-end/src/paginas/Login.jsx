@@ -51,7 +51,7 @@ function Login(){
 
             <form action="#" className="card-login" onSubmit={logar}>
                 <h2>Entrar</h2>
-                <label htmlFor="iemail-usuario"> Email</label>
+                <label htmlFor="iemail-usuario"> Email ou Usuário</label>
                 <input type="text" placeholder="Seu e-mail ou usuário" id="iemail-usuario" name="usuario"/>
                 <label htmlFor="isenha">Senha</label>
                 <input type="password" placeholder="Sua senha" id="isenha" name="senha" />
