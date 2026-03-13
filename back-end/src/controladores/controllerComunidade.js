@@ -37,7 +37,7 @@ async function buscaDetalhesJogo(req, res) {
 
     try{
         //busca informações do jogo
-        const jogoQuery = "SELECT id, titulo, imagem FROM games WHERE id = $1";
+        const jogoQuery = "SELECT id, titulo, imagem, genero, plataforma, ano, desenvolvedora FROM games WHERE id = $1";
         const jogoResult = await pool.query(jogoQuery, [id]); 
         if(jogoResult.rows.length === 0){
             return res.status(404).send("Jogo não encontrado");

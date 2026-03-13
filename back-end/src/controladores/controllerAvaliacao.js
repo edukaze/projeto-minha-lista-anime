@@ -20,5 +20,19 @@ async function salvarOuAtualizarAvaliacao(req, res) {
             return res.status(500).json({ erro: "Erro interno no servidor" });
     }
 }
+ async function buscarAvaliacoes(req, res) {
+    try {
+    //query para busca todas as avaliaçõe de um jogo
+    const query = ` SELECT * FROM avaliacoes`;
+    const { rows } = await pool.query(query);
 
-module.exports = { salvarOuAtualizarAvaliacao };
+   
+
+    return res.status(200).json(rows);
+    }catch (err) {
+        console.error("Erro ao buscar avaliações:", err);
+        return res.status(500).json({ erro: "Erro interno no servidor" });
+    }
+ }
+
+module.exports = { salvarOuAtualizarAvaliacao, buscarAvaliacoes };

@@ -1,13 +1,14 @@
 .detalhes-container {
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 15px;
   color: var(--texto-primario);
   min-height: 100vh;
 }
 
 /* Header com a imagem e título */
 .jogo-header {
+ 
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -15,6 +16,8 @@
   margin-bottom: 40px;
   text-align: center;
 }
+
+
 
 .capa-jogo {
   width: 100%;
@@ -26,42 +29,79 @@
 
 .info-principal h1 {
   font-family: var(--font-titulo);
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #fff;
+  color:var(--acao-primaria) ;
+}
+.info-extra-grid {
+  width: 300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: auto;
+  background-color: var(--bg-claro);
+  padding: 15px;
+  border-radius: 15px;
+  text-align: left; 
+}
+.info-item b {
+  color: var(--texto-primario);
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  
+}
+.info-item span {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  color: var(--texto-secundario);
 }
 
 .nota-geral {
-  background: var(--acao-primaria);
-  color: #000;
-  display: inline-block;
+  width: fit-content;
+  background: var(--acao-secundaria);
+  color: var(--texto-primario);
+  margin: 5px auto;
   padding: 8px 20px;
   border-radius: 50px;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 /* Seção de Resenhas */
 .lista-resenhas-especificas {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--bg-hover);
   padding: 30px;
   border-radius: 20px;
 }
 
 .lista-resenhas-especificas h2 {
   margin-bottom: 25px;
+  font-size: 2rem;
   font-family: var(--font-titulo);
   border-left: 5px solid var(--acao-secundaria);
   padding-left: 15px;
 }
 
+.resenha-individual p {
+  margin-top: 10px;
+  line-height: 1.4;
+  font-size: 1.1rem; /* Tamanho mais confortável para celular */
+}
 .resenha-individual {
-  background: var(--bg-card); /* ou uma variação mais escura */
+  background: color-mix(in srgb, var(--bg-card), transparent 10%);
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: transform 0.2s;
+  ;
+}
+.resenha-individual strong {
+  display: block;
+  color: var(--acao-secundaria);
+  font-size: 1.8rem;
+  margin-bottom: 7px;
 }
 
 .resenha-individual:hover {
@@ -69,22 +109,17 @@
   border-color: var(--acao-primaria);
 }
 
-.resenha-individual strong {
-  display: block;
-  color: var(--acao-secundaria);
-  font-size: 1.1rem;
-  margin-bottom: 5px;
-}
 
 .resenha-individual span {
-  font-size: 0.9rem;
-  opacity: 0.7;
+  font-size: 1.2rem;
+  opacity: 0.8;
 }
 
 .resenha-individual p {
   margin-top: 15px;
-  line-height: 1.6;
-  font-size: 1.1rem;
+  line-height: 1.5;
+  font-size: 1.7rem;
+  font-family: var(--font-texto);
 }
 
 /* Botão Voltar */
@@ -101,6 +136,242 @@
 }
 
 .btn-voltar:hover {
-  background: var(--texto-primario);
-  color: var(--bg-base);
+  background: var(--bg-input);
+  color: var(--texto-secundario);
+}
+
+/* Container dos botões */
+.status-container-botoes {
+  display: flex;
+  flex-wrap: wrap; /* Permite 2 por linha no celular */
+  gap: 12px;
+  justify-content: center; /* Centraliza os botões no mobile */
+  margin: 25px 0;
+  width: 100%;
+  max-width: 400px; /* Evita que os botões estiquem demais em telas médias */
+}
+
+.btn-status-item {
+  /* No mobile, flex-basis 45% faz ficarem 2 por linha com o gap */
+  flex: 1 1 45%; 
+  padding: 14px 8px;
+  border-radius: 12px;
+  border: 2px solid var(--acao-primaria);
+  background: transparent;
+  color: var(--texto-primario);
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Efeito ao segurar o clique (Mobile feedback) */
+.btn-status-item:active {
+  transform: scale(0.95);
+  background: rgba(var(--acao-primaria-rgb), 0.1);
+}
+
+/* BOTÃO ATIVO (O selecionado) */
+.btn-status-item.ativo {
+  background-color: var(--acao-primaria);
+  color: #fff; /* Força branco para contraste */
+  border-color: var(--acao-primaria);
+  box-shadow: 0 4px 15px color-mix(in srgb, var(--acao-primaria), transparent 60%);
+}
+/* Ajuste para Desktop */
+
+/* --- CARROSSEL DE RESENHAS --- */
+.carrossel-container {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.carrossel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* Faz o "imã" no card */
+  gap: 15px;
+  padding: 10px 5px 25px 5px;
+  /* Esconde a barra de rolagem no Chrome/Safari/Firefox */
+  scrollbar-width: none; 
+}
+
+.carrossel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.resenha-card {
+  flex: 0 0 85%; /* No mobile, mostra quase o card todo e um pedaço do próximo */
+  scroll-snap-align: center;
+  background: color-mix(in srgb, var(--bg-card), transparent 15%);
+  padding: 15px;
+  border-radius: 20px 15px;
+  border: 1px solid var(--borda);
+  box-shadow: 2px 2px 10px var( --borda);
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.resenha-topo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.nota-tag {
+  background: var(--acao-secundaria);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.resenha-texto {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Corta o texto em 5 linhas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.scroll-hint {
+  text-align: center;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-top: -10px;
+}
+
+
+
+
+
+@media (min-width: 800px) {
+  .status-container-botoes {
+    justify-content: flex-start; /* Alinha à esquerda no PC */
+  }
+
+  .btn-status-item {
+    flex: none; /* Desativa o crescimento forçado */
+    width: auto;
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+  
+  .btn-status-item:hover {
+    background: rgba(var(--acao-primaria), 0.2); /* Um leve brilho no hover */
+    transform: translateY(-2px);
+  }
+  .detalhes-container {
+    max-width: 1200px;
+    padding: 40px;
+  }
+
+  .jogo-header {
+    flex-direction: row; 
+    align-items: flex-start;
+    text-align: left;
+    gap: 50px;
+    background: var(--bg-claro); 
+    padding: 30px;
+    border-radius: 30px;
+  }
+
+  /* Trava o tamanho da imagem na esquerda */
+  .capa-jogo {
+    max-width: 350px; 
+    width: 350px; 
+    height: auto;
+    position: sticky; 
+    top: 20px;
+    box-shadow: 0 10px 20px var(--borda);
+  }
+
+  .info-principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    padding-top: 40px;
+    align-items: center;
+  }
+
+  .info-principal h1 {
+    font-size: 3.5rem; 
+    margin-bottom: 20px;
+    
+  }
+
+  /* botões de status */
+
+  .status-container-botoes {
+    justify-content: flex-start; /* Alinha à esquerda no PC conforme o cabeçalho */
+    max-width: none;
+    gap: 15px;
+  }
+
+  .btn-status-item {
+    flex: none; /* Desativa o esticamento do mobile */
+    min-width: 140px;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    border-width: 1.5px; /* Deixa um pouco mais fino e elegante no PC */
+  }
+
+  .btn-status-item:hover {
+    background: color-mix(in srgb, var(--acao-primaria), transparent 85%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-status-item.ativo:hover {
+    background-color: var(--acao-primaria); /* Mantém a cor sólida no hover se ativo */
+    transform: translateY(-1px);
+  }
+
+  /* Seção de Resenhas no PC */
+  .lista-resenhas-especificas {
+    margin-top: 30px;
+    margin-left: 0; 
+  }
+  .info-extra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 10px;
+    margin: auto;
+    margin: 10px;
+    background-color: var(--bg-claro);
+    padding: 20px;
+    border-radius: 15px 25px;
+  }
+
+  .info-item b {
+    color: var(--texto-primario);
+    display: block;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+
+  .info-item span {
+    font-size: 1.3rem;
+    color:var(--texto-secundario);
+  }
+
+  .resenha-card {
+    flex: 0 0 31%; /* Mostra 3 cards por vez no PC */
+  }
+  
+  .scroll-hint {
+    display: none;
+  }
+
 }

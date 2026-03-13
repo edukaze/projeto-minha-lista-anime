@@ -1,4 +1,12 @@
+.comunidade-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .card-jogo-comunidade {
+  display: flex;
+  flex-direction: column;
   width: 80%;
   height: auto;
   background-color: var(--bg-claro);
@@ -6,14 +14,19 @@
   border-radius: var(--radius-default);
   overflow: hidden;
   margin: 15px auto; 
-  transition: var(--transition-rapida);
   
+}
+.feed-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /* Banner do Jogo no Card */
 .jogo-banner {
-  width: 50vw;
+  width: 30vw;
   height: 240px; 
+  min-width: 20vw;
   aspect-ratio: 16 / 9;
   margin:  15px auto;
   border-radius:  15px 20px;
@@ -36,16 +49,33 @@
   font-size: 0.9rem;
 }
 
+.btn-ver-mais {
+  display: block;
+  margin: 10px auto;
+  padding: 8px 16px;
+  background-color: var(--acao-secundaria);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-default);
+  box-shadow: 2px 2px 5px var(--borda);
+  font-family: var(--font-texto);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: var(--transition-rapida);
+}
 
 .card-info {
   padding: 15px;
 }
 
+
 .card-info h4 {
   font-family: var(--font-titulo);
   color: var(--texto-primario);
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   margin-bottom: 5px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 .total-txt {
@@ -79,25 +109,65 @@
   margin: 5px 0 0 0;
   display: block; 
 }
-
-.card-jogo-comunidade:active {
-  transform: scale(0.96); /* O card encolhe levemente */
-  filter: brightness(1.2); /* Dá um leve brilho */
-  transition: transform 0.1s ease; /* Resposta imediata ao toque */
+.card-jogo-comunidade:hover {
+  border-color: var(--borda); 
+}
+.btn-ver-mais:hover {
+  background-color: var(--acao-primaria);
+  color: #000;
+  box-shadow: 0 0 15px var(--acao-primaria);
+}
+.btn-ver-mais:active {
+  transform: scale(0.92); 
+  filter: brightness(1.3); 
+}.btn-ver-mais:active {
+  transform: scale(0.92); 
+  filter: brightness(1.3); 
 }
 
-/* Ajuste no cursor para Desktop (ajuda no desenvolvimento) */
-.card-jogo-comunidade {
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
 
-.comunidade-container {
-  animation: fadeIn 0.5s ease-in-out;
-}
+@media (min-width: 800px) {
+  .conterner-principal {
+    width: 70vw;
+  }
+  .card-jogo-comunidade {
+    flex-direction: row; 
+    width: 100%; 
+    max-width: 1100px; 
+    height: 350px; 
+    align-items: stretch;
+  }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  .jogo-banner {
+    width: 260px; 
+    min-width: 260px; /* Impede que ela diminua */
+    height: 80%;
+    margin: 25px 10px 10px 20px;
+    background-position: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  
+  .card-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;
+    font-size: 1.4em;
+  }
+  .card-info h4{
+    font-size: 2.2em;
+  }
+
+  .btn-ver-mais {
+    width: auto;
+    align-self: center; 
+    padding: 10px 30px;
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+  }
+
+  .btn-ver-mais:hover {
+    transform: scale(1.03); 
+  }
 }

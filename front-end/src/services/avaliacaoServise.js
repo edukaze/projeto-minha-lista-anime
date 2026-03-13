@@ -10,3 +10,14 @@ export const salvarAvaliacao = async (id_jogo, nota, descricao) => {
         throw error;
     }
 };
+
+export const buscarAvaliacoes = async (id_jogo) => {
+
+    try {
+        const response = await api.get(`/avaliacoes`);
+        return response.data;
+    }catch (error) {
+        console.log("Erro ao buscar Avaliações", error);
+        return [];
+    }
+};

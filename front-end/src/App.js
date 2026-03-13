@@ -63,7 +63,7 @@ function App() {
 
   {/* Rota para o Detalhe do Jogo (Fora da outra rota) */}
   <Route
-    path="/comunidade/jogo/:id"
+    path="/jogo/:id"
     element={
       <>
         <Header />

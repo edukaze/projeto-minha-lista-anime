@@ -15,7 +15,7 @@ export const buscaFeedComunidade = async () =>{
 
 export const buscaDetalhesJogo = async (jogoId) => {
     try {
-        const response = await api.get(`/comunidade/jogo/${jogoId}`);
+        const response = await api.get(`/jogo/${jogoId}`);
         
         return response.data;
         

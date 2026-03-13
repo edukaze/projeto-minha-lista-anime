@@ -30,7 +30,7 @@ function Comunidade(){
     <div 
       key={index} 
       className="card-jogo-comunidade" 
-      onClick={() => navigate(`/comunidade/jogo/${item.id_jogo}`)}
+      
     >
       {/* Imagem de fundo do card */}
       <div 
@@ -39,6 +39,7 @@ function Comunidade(){
       >
         <div className="media-badge">⭐ {item.media_nota || item.nota}</div>
       </div>
+
 
       <div className="card-info">
         <h4>{item.jogo_titulo}</h4>
@@ -49,6 +50,7 @@ function Comunidade(){
           <span className="user-highlight">{item.ultimo_usuario}:</span>
           <p className="p-comentario">"{item.ultima_descricao || "Sem comentário..."}"</p>
         </div>
+        <button onClick={() => navigate(`/jogo/${item.id_jogo}`)} className="btn-ver-mais">Ver Sobre o Jogo</button>
       </div>
     </div>
   ))}
