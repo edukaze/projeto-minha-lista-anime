@@ -15,6 +15,41 @@
   color: var(--texto-primario);
 }
 
+.perfil-header-topo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap; /* Para mobile não quebrar */
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.btn-ir-resenhas {
+  background-color: var(--bg-input); /* Cor que você usa nos inputs */
+  color: var(--texto-primario);
+  border: 1px solid var(--borda);
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-ir-resenhas:hover {
+  background-color: var(--borda); /* Dá um destaque no hover */
+  transform: translateY(-2px);
+}
+
+
+.btn-excluir-resenha:hover {
+  color: #ff5555; /* O vermelho para o hover de apagar */
+}
+
 
 /* ===========================================================
    SEÇÕES MINIMIZÁVEIS (ACCORDION)

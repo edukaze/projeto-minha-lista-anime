@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route} from "react-router-dom";
 import { useEffect } from "react";
 import Header from "./componentes/Hearder/Header";
 import Home from "./paginas/Home";
@@ -9,6 +9,7 @@ import Perfil from "./paginas/Perfil";
 import Comunidade from "./paginas/Comunidade";
 import RotaProtegida from "./routes/RotaProtegida";
 import JogoDetalhes from "./componentes/JogoDetalhe";
+import MinhasResenhas from "./paginas/Resenhas";
 
 
 
@@ -55,6 +56,7 @@ function App() {
     path="/comunidade"
     element={
       <>
+      
         <Header />
         <Comunidade />
       </>
@@ -83,8 +85,18 @@ function App() {
         </RotaProtegida>
       }
     />
+    <Route
+      path="/minhas-resenhas"
+      element={
+        <RotaProtegida>
+          <Header />
+          <MinhasResenhas/>
+        </RotaProtegida>
+      }
+    />
 
   </Routes>
+  
 </BrowserRouter>
 
   );

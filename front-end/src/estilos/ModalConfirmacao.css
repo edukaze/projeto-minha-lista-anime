@@ -2,57 +2,71 @@
 .modal-confirmacao-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7); /* Escurece o fundo para destacar o modal */
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3000;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(4px);
 }
 
 .modal-confirmacao-caixa {
-  background: #1a1a2e;
-  padding: 30px;
-  border-radius: 15px;
+  background: var(--bg-input); /* Usa o fundo de input que já é destacado */
+  padding: 40px 30px;
+  border-radius: var(--radius-default);
   text-align: center;
-  border: 1px solid #333;
-  max-width: 400px;
+  border: 2px solid var(--borda); /* Borda estilizada do seu tema */
+  max-width: 450px;
   width: 90%;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .modal-confirmacao-caixa p {
-  color: white;
-  font-size: 1.2rem;
-  margin-bottom: 25px;
+  color: var(--texto-primario);
+  font-family: var(--font-titulo); /* Usando a fonte Russo One para impacto */
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  line-height: 1.4;
 }
 
 .modal-confirmacao-botoes {
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
 }
 
 .modal-confirmacao-botoes button {
-  padding: 10px 25px;
+  padding: 12px 28px;
   border-radius: 8px;
+  letter-spacing: 4px;
   cursor: pointer;
   font-weight: bold;
+  font-family: var(--font-titulo);
+  text-transform: uppercase;
+  transition: var(--transition-normal);
   border: none;
-  transition: 0.2s;
 }
 
+/* Botão Cancelar: Segue o estilo de borda neutra */
 .btn-cancelar {
-  background: #444;
-  color: white;
+  background: var(--bg-hover);
+  color: var(--texto-primario);
+  border: 1px solid var(--borda) !important;
 }
 
+.btn-cancelar:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+/* Botão Confirmar: Destaque total com a cor de ação */
 .btn-confirmar {
-  background: #ff4d4d; /* Vermelho para exclusão */
+  background: var(--acao-secundaria); /* Rosa no escuro / Ciano no claro */
   color: white;
 }
 
 .btn-confirmar:hover {
-  background: #ff2222;
+  filter: contrast(1.2);
   transform: scale(1.05);
+  box-shadow: 0 0 20px var(--acao-secundaria);
 }

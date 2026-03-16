@@ -2,17 +2,32 @@ import "../estilos/Perfil.css";
 import React, { useEffect, useState } from "react";
 import { listarStatus, salvarStatusGame, excluirStatusGame } from "../services/statusService";
 import BarraBusca from "../componentes/BarraBusca";
+import { useNavigate } from "react-router-dom";
+import { estaLogado } from "../services/auth";
 import ModalConfirmacao from "../componentes/ModalConfirmacao";
 import ModalAvaliacao from "../componentes/ModalAvaliacao";
 import { salvarAvaliacao } from "../services/avaliacaoServise";
-
+import { Calendar, Gamepad2, Trophy, XCircle, Star, NotebookPen } from 'lucide-react';
 
 const Perfil = () => {
   const [jogosComStatus, setJogosComStatus] = useState([]);
   const [loading, setLoading] = useState(true);
   const [busca, setBusca] = useState("");
   const [menuAberto, setMenuAberto] = useState(null);
-  
+  const navigate = useNavigate();
+
+  // --- VERIFICAÇÃO DE SEGURANÇA E CARREGAMENTO INICIAL ---
+  useEffect(() => {
+    if (!estaLogado()) {
+      // Se não houver token/sessão, manda para o login
+      navigate("/login"); 
+      return;
+    }
+
+    // Se estiver logado, carrega os dados normalmente
+    carregarDadosPerfil();
+  }, [navigate]);
+
   // aba de avaliação 
   const [jogoSendoAvaliado, setJogoSendoAvaliado] = useState(null);
 
@@ -47,34 +62,30 @@ const Perfil = () => {
       setLoading(false);
     }
   };
-  const[confirmacaoExclusao, setConfirmacaoExclusao] = useState({ visivel:false, jogoId:null });
+
+  const [confirmacaoExclusao, setConfirmacaoExclusao] = useState({ visivel: false, jogoId: null });
+
   // Mude sua função jogoPerfilExcluir para apenas abrir o modal
- const abrirConfirmacaoExcluir = (gameId) => {
-  setConfirmacaoExclusao({ visivel: true, jogoId: gameId });
-  setMenuAberto(null); // Fecha o menu de 3 pontos
+  const abrirConfirmacaoExcluir = (gameId) => {
+    setConfirmacaoExclusao({ visivel: true, jogoId: gameId });
+    setMenuAberto(null); // Fecha o menu de 3 pontos
   }; 
   
   // Função que realmente exclui
-const confirmarEExcluir = async () => {
-  const gameId = confirmacaoExclusao.jogoId;
-  try {
-    await excluirStatusGame(gameId);
-    setMensagemFeedback("Jogo removido da sua biblioteca.");
-    setTimeout(() => setMensagemFeedback(null), 3000);
-    carregarDadosPerfil();
-  } catch (error) {
-    console.error("Erro ao excluir:", error);
-    setMensagemFeedback("Erro ao excluir o jogo.");
-  } finally {
-    setConfirmacaoExclusao({ visivel: false, jogoId: null });
-  }
-};
-    
-  
-
-  useEffect(() => {
-    carregarDadosPerfil();
-  }, []);
+  const confirmarEExcluir = async () => {
+    const gameId = confirmacaoExclusao.jogoId;
+    try {
+      await excluirStatusGame(gameId);
+      setMensagemFeedback("Jogo removido da sua biblioteca.");
+      setTimeout(() => setMensagemFeedback(null), 3000);
+      carregarDadosPerfil();
+    } catch (error) {
+      console.error("Erro ao excluir:", error);
+      setMensagemFeedback("Erro ao excluir o jogo.");
+    } finally {
+      setConfirmacaoExclusao({ visivel: false, jogoId: null });
+    }
+  };
 
   const handleMudarStatus = async (game_id, novoStatus) => {
     try {
@@ -85,7 +96,6 @@ const confirmarEExcluir = async () => {
     }
   };
 
-
   //avaliações 
   const [mensagemFeedback, setMensagemFeedback] = useState(null);
 
@@ -94,39 +104,47 @@ const confirmarEExcluir = async () => {
       await salvarAvaliacao(gameId, nota, comentario);
 
       // Define a mensagem de sucesso
-    setMensagemFeedback("Avaliação feita com sucesso! Veja na resenhas todas as avaliações.");
-    setTimeout(() => setMensagemFeedback(null), 5000);
+      setMensagemFeedback("Avaliação feita com sucesso! Veja na resenhas todas as avaliações.");
+      setTimeout(() => setMensagemFeedback(null), 5000);
 
-
-    setJogoSendoAvaliado(null); // Fecha o modal
-    setJogoSendoAvaliado(null);
-    carregarDadosPerfil(); 
+      setJogoSendoAvaliado(null); // Fecha o modal
+      carregarDadosPerfil(); 
     } catch (error) {
       setMensagemFeedback("Erro ao salvar avaliação. Tente novamente.");
       setTimeout(() => setMensagemFeedback(null), 5000);
     }
   };
 
-  
-
   if (loading) return <p className="loading-text">Carregando sua coleção...</p>;
 
   return (
     <div className="perfil-container">
+      <header className="perfil-header-topo">
+        <h1>Meu Perfil Gamer</h1>
 
-      <h1>Meu Perfil Gamer</h1>
+        <div className="perfil-acoes">
+          <button 
+            className="btn-ir-resenhas" 
+            onClick={() => navigate("/minhas-resenhas")}
+          >
+            <NotebookPen size={18} /> Minhas Resenhas
+          </button>
+        </div>
+      </header>
+
       {/* barra de pesquisa */}
       <BarraBusca 
         valor={busca} 
         setValor={setBusca} 
         placeholder="Pesquise seus jogos..." 
-        />
-        {/* Mensagem de Feedback Animada */}
-        {mensagemFeedback && (
-      <div className="feedback-toast">
-        <p>{mensagemFeedback}</p>
-      </div>
-    )}
+      />
+
+      {/* Mensagem de Feedback Animada */}
+      {mensagemFeedback && (
+        <div className="feedback-toast">
+          <p>{mensagemFeedback}</p>
+        </div>
+      )}
 
       <div className="status-sections">
         {['planejado','jogando', 'zerado', 'dropado'].map((categoria) => (
@@ -168,10 +186,10 @@ const confirmarEExcluir = async () => {
                                 setJogoSendoAvaliado(jogo);
                                 setMenuAberto(null);
                               }}>
-                                ⭐ Avaliar
+                                <Star size={18} /> Avaliar
                               </button>
                               <button className="btn-excluir" onClick={() => abrirConfirmacaoExcluir(jogo.game_id)}>
-                                🗑️ Excluir
+                                <XCircle size={18} /> Excluir
                               </button>
                             </div>
                           )}
@@ -188,10 +206,10 @@ const confirmarEExcluir = async () => {
                               className={`btn-status-chip ${jogo.status === op ? 'ativo-' + op : ''}`}
                               onClick={() => handleMudarStatus(jogo.game_id, op)}
                             >
-                              {op === 'planejado' && '📅'}
-                              {op === 'jogando' && '🎮'}
-                              {op === 'zerado' && '🏆'}
-                              {op === 'dropado' && '❌'}
+                              {op === 'planejado' && <Calendar size={18} />}
+                              {op === 'jogando' && <Gamepad2 size={18} />}
+                              {op === 'zerado' && <Trophy size={18} />}
+                              {op === 'dropado' && <XCircle size={18} />}
                               <span className="texto-chip">{op.toUpperCase()}</span>
                             </button>
                           ))}
@@ -223,7 +241,6 @@ const confirmarEExcluir = async () => {
         />
       )}
     </div>
-
   );
 };
 
