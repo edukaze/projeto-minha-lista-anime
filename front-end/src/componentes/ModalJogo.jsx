@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // Recebemos os dados e funções via props
 function ModalJogo({ 
@@ -8,6 +9,7 @@ function ModalJogo({
   statusJogos, 
   onMarcarStatus 
 }) {
+  const navigate = useNavigate();
   // Se não houver jogo selecionado, não renderiza nada
   if (!jogo) return null;
 
@@ -54,11 +56,13 @@ function ModalJogo({
               </button>
             </>
           ) : (
-            <p style={{ marginTop: "10px", color: "var(--texto-secundario)" }}>
-              Faça login para marcar o status do jogo
+            <p className="mensagem-login-status">
+              Faça Login para Marcar o Status do Jogo
             </p>
           )}
         </div>
+
+        <button onClick={() => navigate(`/jogo/${jogo.id || jogo.id_jogo}`)} className="btn-mais-sobre-jogo">Ver Sobre o Jogo</button>
 
         <button className="modal-fechar" onClick={onClose}>
           Fechar

@@ -68,6 +68,39 @@
   padding: 15px;
 }
 
+/* BOTÃO VER MAIS SOBRE O JOGO */
+.btn-mais-sobre-jogo {
+  display: block;             /* Garante que ele se comporte como um bloco */
+  width: 100%;                /* Ocupa a largura total do modal */
+  margin: 15px 0;             /* Espaço em cima e embaixo */
+  padding: 12px;
+  background-color: transparent;
+  color: var(--texto-primario);
+  border: 2px solid var(--cor-primaria); /* Cor neon do seu projeto */
+  border-radius: 10px;
+  font-family: var(--font-titulo);
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-mais-sobre-jogo {
+  background-color: var(--cor-primaria);
+  color: #fff;
+  box-shadow: 0 0 20px var(--cor-primaria); /* Efeito Glow */
+  transform: scale(1.02);
+}
+
+/* Ajuste no botão fechar para não ficar colado */
+.modal-fechar {
+  margin-top: 5px !important;
+  opacity: 0.8;
+}
+
 
 .card-info h4 {
   font-family: var(--font-titulo);

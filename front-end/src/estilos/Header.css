@@ -96,9 +96,10 @@ h1.logo{
 
 /* botão de fechar */
 .menu-mobile .fechar {
-  background-color: none;
+  background-color: transparent;
+  color: red;
   border: none;
-  font-size: 1.8em;
+  font-size: 2.5em;
   align-self: flex-end;
   cursor: pointer;
 }

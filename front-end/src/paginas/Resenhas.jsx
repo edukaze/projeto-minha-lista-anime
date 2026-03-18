@@ -3,12 +3,16 @@ import React, { useEffect, useState } from "react";
 import { buscarAvaliacoesUsuario, salvarAvaliacao, apagarAvaliacao } from "../services/avaliacaoServise";
 import CardResenha from "../componentes/CardResenhas";
 import ModalAvaliacao from "../componentes/ModalAvaliacao";
+import { useNavigate } from "react-router-dom";
 import ModalConfirmacao from "../componentes/ModalConfirmacao";
 import "../estilos/Resenhas.css";
+import BarraBusca from "../componentes/BarraBusca";
 
 const MinhasResenhas = () => {
   const [resenhas, setResenhas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const [busca, setBusca] = useState("");
   
   // Estados para os Modais
   const [jogoSendoEditado, setJogoSendoEditado] = useState(null);
@@ -60,13 +64,31 @@ const MinhasResenhas = () => {
 
   return (
     <div className="minhas-resenhas-page">
+      <header className="header-resenha-top">
       <h1>Minhas Resenhas</h1>
+
+        <div className="acoes-resenha">
+            <button 
+            className="btn-ir-perfil"
+            onClick={() => navigate("/perfil")}>
+              Meu Perfil
+            </button>
+        </div>
+      </header>
+
+          <BarraBusca
+          valor={busca}
+          setValor={setBusca}
+          placeholder="Pesquise por um Jogo que Você fez Resenha"
+          />
 
       <div className="resenhas-lista">
         {resenhas.length === 0 ? (
           <p>Você ainda não escreveu nenhuma resenha.</p>
         ) : (
-          resenhas.map((resenha) => (
+          resenhas.filter((r) => r.titulo.toLowerCase().includes(busca.toLowerCase())
+        )
+          .map((resenha) => (
             <CardResenha
               key={resenha.id_jogo}
               resenha={resenha}

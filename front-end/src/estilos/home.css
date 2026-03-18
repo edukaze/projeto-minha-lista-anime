@@ -1,5 +1,5 @@
 #home {
-    margin-top: 70px;
+    margin-top: 0px;
     background-color: var(--bg-cor);
     min-height: 100vh;
 }
@@ -141,7 +141,15 @@ h4{
     align-items: center;
 }
 
-.seta {
+.seta{
+    display: none;
+}
+
+
+
+@media (min-width: 800px) {
+
+    .seta {
     position: absolute;
     z-index: 10;
     background: rgba(0, 0, 0, 0.7);
@@ -166,8 +174,6 @@ h4{
 
 .seta-esq { left: -40px; }
 .seta-dir { right: -40px; }
-
-@media (min-width: 800px) {
     .conteiner-principal {
         width: 85%; 
         margin: -30px auto 40px auto; 

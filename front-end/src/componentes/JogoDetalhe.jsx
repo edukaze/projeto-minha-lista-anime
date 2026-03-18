@@ -108,7 +108,7 @@ function JogoDetalhes() {
                                 <div key={index} className="resenha-card">
                                     <div className="resenha-topo">
                                         <strong>{av.usuario_nome}</strong>
-                                        <span className="nota-tag">⭐ {av.nota}/5</span>
+                                        <span className="nota-tag">&#9733; {av.nota}/5</span>
                                     </div>
                                     <p className="resenha-texto">{av.descricao}</p>
                                 </div>

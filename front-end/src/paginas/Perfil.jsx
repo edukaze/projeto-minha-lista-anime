@@ -104,7 +104,7 @@ const Perfil = () => {
       await salvarAvaliacao(gameId, nota, comentario);
 
       // Define a mensagem de sucesso
-      setMensagemFeedback("Avaliação feita com sucesso! Veja na resenhas todas as avaliações.");
+      setMensagemFeedback("Avaliação feita com sucesso! Veja Todas sua Resenhas em Minhas Renhas.");
       setTimeout(() => setMensagemFeedback(null), 5000);
 
       setJogoSendoAvaliado(null); // Fecha o modal
@@ -121,6 +121,7 @@ const Perfil = () => {
     <div className="perfil-container">
       <header className="perfil-header-topo">
         <h1>Meu Perfil Gamer</h1>
+
 
         <div className="perfil-acoes">
           <button 
