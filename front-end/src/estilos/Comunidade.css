@@ -120,7 +120,7 @@
 
 /* Estilo do comentário recente */
 .ultima-atividade {
-  min-height: 50px;
+  
   background: var(--bg-hover);
   border-left: 4px solid var(--acao-secundaria);
   padding: 10px;

@@ -1,67 +1,85 @@
 @charset "UTF-8";
 
-
-header#header{
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 15px;
-    width: 100%;
-    background-color: var(--cor-primaria);
-    color: var(--texto-primario);
-    transition: var(--transition-rapida);
+/* ============================================================
+   ESTILOS BASE E VARIÁVEIS (MOBILE FIRST)
+   ============================================================ */
+header#header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  background-color: var(--cor-primaria);
+  color: var(--texto-primario);
+  transition: var(--transition-rapida);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
+
 #header .topo {
   display: flex;
   align-items: center;
-  justify-content: start;
-  gap: 15px;
-  padding: 10px 15px;
-  background-color: var(--cor-primaria);
-  color: var(--text-primario);
+  justify-content: space-between; /* Garante separação em qualquer tela */
+  padding: 10px 20px;
+  min-height: 70px;
 }
-.hamburguer{
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Logo que aparece na barra superior (Desktop) */
+h1.logo {
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  display: none; /* Escondida no mobile por padrão, como você pediu */
+}
+
+.hamburguer {
   background: transparent;
   border: none;
-  font-size: 3em;
+  font-size: 2.2rem;
   cursor: pointer;
   color: var(--texto-primario);
+  display: flex;
+  align-items: center;
 }
 
-/* Logo */
-h1.logo{
-    font-size: 3em;
-    font-weight: 700;
-}
-
-#header h1.logo{
-    font-size: 3em;
-    font-weight: 700;
-    font-family: var(--font-titulo);
-    box-shadow: 0 0 15px rgba(0, 0, 0, .4);
-    padding: 5px 10px;
-    border-radius: 8px;
-}
-
-/*MENU LATERAL*/
-
-.menu-mobile{
+/* ============================================================
+   MENU LATERAL (MOBILE)
+   ============================================================ */
+.menu-mobile {
   position: fixed;
   top: 0;
-  left: -260px; /* começa escondido */
-  width: 260px;
+  left: -280px; /* Escondido */
+  width: 280px;
   height: 100vh;
   background-color: var(--cor-primaria);
   padding: 30px;
-  box-shadow: 2px 0px 10px rgba(0,0,0,0.4);
+  box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  transition: var(--transition-rapida);
+  transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1100;
 }
+
 .menu-mobile.aberto {
-  left: 0; /* aparece */
+  left: 0; /* Aparece */
+}
+
+/* Nome que aparece APENAS dentro do menu hambúrguer no celular */
+.logo-mobile-menu {
+  display: block;
+  font-family: var(--font-titulo);
+  font-size: 1.8rem;
+  color: var(--texto-primario);
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-mobile ul {
@@ -69,154 +87,130 @@ h1.logo{
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 0;
 }
 
-.menu-mobile ul li  {
-  color: var(--text-secundario);
-  font-family: var(--font-texto);
-  font-size: 2.5em;
-  display: flex;
-  align-items: center;
-  gap: 15px; /* espaçamento entre o ícone e o texto */
-  cursor: pointer;
-}
-.menu-mobile ul li a {
+.item-header {
   text-decoration: none;
-  color: inherit;     /* mantém a cor do li */
+  color: var(--texto-primario);
+  font-family: var(--font-texto);
+  font-size: 1.4rem;
   display: flex;
   align-items: center;
   gap: 15px;
+  cursor: pointer;
+  padding: 10px;
+  transition: 0.3s;
 }
 
-  #logout {
-  color: var(--acao-primaria);
+/* Botão de fechar (X) */
+.menu-mobile .fechar {
+  background: transparent;
+  color: var(--acao-secundaria);
+  border: none;
+  font-size: 2rem;
+  align-self: flex-end;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Overlay (Fundo escuro) */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  z-index: 1050;
+}
+
+/* Estilo Logout Mobile */
+#logout {
+  color: var(--acao-secundaria);
   font-weight: bold;
 }
 
-
-/* botão de fechar */
-.menu-mobile .fechar {
-  background-color: transparent;
-  color: red;
-  border: none;
-  font-size: 2.5em;
-  align-self: flex-end;
-  cursor: pointer;
+/* ============================================================
+   BOTÃO DE TEMA (SOL/LUA)
+   ============================================================ */
+#tema {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
 }
-
-/* overlay por trás */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-}
-/*botao sol e lua */
 
 .btn-tema {
   width: 35px;
   height: 35px;
-  border: 2px 2px 2px solid var(--borda);
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.37);
   border-radius: 50%;
-  cursor: pointer;
+  border: 2px solid var(--borda);
   background: var(--acao-secundaria);
-  color: var(--btn-icon);
-  font-size: 1.5rem;
-  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: 0.3s;
 }
 
-.theme-toggle:hover {
-  transform: scale(1.1);
+.btn-tema:hover {
+  transform: scale(1.1) rotate(15deg);
 }
 
-/*Desktop */
-@media (min-width: 930px) {
+/* ============================================================
+   CONFIGURAÇÕES DESKTOP (900px+)
+   ============================================================ */
+@media (min-width: 900px) {
   
-  #header .topo {
-    width: 100%;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-    max-width: 1200px; 
-    margin: 0 auto;    
-    padding: 0 20px;
+  /* Mostrar a logo na barra principal */
+  h1.logo {
+    display: block;
+    font-size: 2.2rem;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   }
 
-  /*  Esconde o botão de abrir o menu (Hamburguer) */
-  .hamburguer {
-    display: none;
-  }
-
-  /* Transforma o Menu Mobile em uma Barra Horizontal */
-  .menu-mobile {
-    position: static;    
-    width: auto;
-    height: auto;
-    background-color: transparent;
-    box-shadow: none;
-    display: flex;       
-    transform: none;     
-    padding: 0;
-  }
-
-  /*  Alinha a lista (UL) horizontalmente */
-  .menu-mobile ul {
-    flex-direction: row; 
-    align-items: center;
-    gap: 25px;           
-  }
-
-
-  /*  Ajusta o tamanho dos itens (2.5em é muito pro desktop) */
-  .menu-mobile ul li {
-    font-size: 1.7rem;     
-  }
-
-  /*  Esconde elementos que só fazem sentido no celular */
-  .menu-mobile .fechar, 
-  .overlay {
+  /* Esconder elementos de mobile */
+  .hamburguer, .fechar, .overlay, .logo-mobile-menu, #tema span {
     display: none !important;
   }
 
-  /*  Ajuste opcional para o Botão de Tema no Desktop */
-  #tema {
-
-    margin-top: 0;
-    flex-direction: row-reverse; 
+  /* Resetar o Menu Mobile para Barra Horizontal */
+  .menu-mobile {
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+    display: flex;
+    flex-direction: row;
   }
-  .btn-tema{
-    width: 30px;
-    height: 30px;
+
+  .menu-mobile ul {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px; /* Gap entre os itens do menu */
   }
 
   .item-header {
-    padding: 8px 15px; /* Dá espaço para o fundo aparecer sem apertar o texto */
+    font-family: var(--font-titulo);
+    font-size: 1rem;
+    padding: 8px 8px;
     border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--texto-primario);
     position: relative;
+    font-weight: 300;
   }
 
+  /* --- EFEITO HOVER LEGAL */
   .item-header:hover {
-    /* Cria um fundo semi-transparente para dar contraste */
     background-color: rgba(255, 255, 255, 0.1); 
-    
-    /* Muda a cor do texto para uma cor sólida e forte */
-    color: var(--btn-icon) !important; 
-    
-    /* Adiciona um brilho sutil na caixa, não no texto (para não embaçar a letra) */
+    color: var(--acao-primaria) !important; 
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    
     transform: translateY(-2px);
   }
 
-  /* Se quiser a linha embaixo também, ela fica bem discreta aqui */
+  /* Linha neon animada embaixo */
   .item-header::after {
     content: "";
     position: absolute;
@@ -232,5 +226,14 @@ h1.logo{
   .item-header:hover::after {
     transform: scaleX(1);
   }
-  
+
+  /* Ajuste do Botão de Tema no Desktop */
+  #tema {
+    margin: 0 0 0 15px;
+  }
+
+  .btn-tema {
+    width: 32px;
+    height: 32px;
+  }
 }

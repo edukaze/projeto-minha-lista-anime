@@ -18,14 +18,19 @@ import {
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  /* ===== CONTROLE DE LOGIN ===== */
   const [logado, setLogado] = useState(false);
+  const [menuAberto, setMenuAberto] = useState(false);
+  const temaInicial = localStorage.getItem("tema") || "claro";
+  const [tema, setTema] = useState(temaInicial);
 
-  // Atualiza sempre que a rota mudar
   useEffect(() => {
     setLogado(estaLogado());
   }, [location.pathname]);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-tema", tema);
+    localStorage.setItem("tema", tema);
+  }, [tema]);
 
   function handleLogout() {
     sair();
@@ -33,115 +38,77 @@ function Header() {
     navigate("/login");
   }
 
-  /* ===== MENU MOBILE ===== */
-  const [menuAberto, setMenuAberto] = useState(false);
-
-  function abrirMenu() {
-    setMenuAberto(true);
-  }
-
-  function fecharMenu() {
-    setMenuAberto(false);
-  }
-
-  /* ===== TEMA ===== */
-  const temaInicial = localStorage.getItem("tema") || "claro";
-  const [tema, setTema] = useState(temaInicial);
-
-  function trocarTema() {
-    const novoTema = tema === "claro" ? "escuro" : "claro";
-    setTema(novoTema);
-  }
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-tema", tema);
-    localStorage.setItem("tema", tema);
-  }, [tema]);
+  const trocarTema = () => setTema(tema === "claro" ? "escuro" : "claro");
+  const abrirMenu = () => setMenuAberto(true);
+  const fecharMenu = () => setMenuAberto(false);
 
   return (
     <header id="header">
       <div className="topo">
-        <button className="hamburguer" onClick={abrirMenu}>
-          <FontAwesomeIcon icon={faBars} />
-        </button>
-        <h1 className="logo">MyGamesList</h1>
+        {/* LADO ESQUERDO: HAMBURGUER + LOGO */}
+        <div className="logo-section">
+          <button className="hamburguer" onClick={abrirMenu}>
+            <FontAwesomeIcon icon={faBars} />
+          </button>
+          <h1 className="logo logo-desktop">MyGamesList</h1>
+        </div>
 
-      {menuAberto && <div className="overlay" onClick={fecharMenu}></div>}
+        {menuAberto && <div className="overlay" onClick={fecharMenu}></div>}
 
-      <nav className={`menu-mobile ${menuAberto ? "aberto" : ""}`}>
-        <button className="fechar" onClick={fecharMenu}>
-          <FontAwesomeIcon icon={faXmark} />
-        </button>
+        {/* LADO DIREITO: NAVEGAÇÃO */}
+        <nav className={`menu-mobile ${menuAberto ? "aberto" : ""}`}>
+          <button className="fechar" onClick={fecharMenu}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
 
-        <ul>
-          <li>
-            <Link to="/" className="item-header" onClick={fecharMenu}>
-              <FontAwesomeIcon icon={faHouse} /> HOME
-            </Link>
-          </li>
+            <h2 className="logo-mobile-menu">MyGamesList</h2>
 
-          <li>
-            <Link to="/jogos" className="item-header" onClick={fecharMenu}>
-              <FontAwesomeIcon icon={faGamepad} /> JOGOS
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/comunidade" className="item-header" onClick={fecharMenu}>
-              <FontAwesomeIcon icon={faUsers} /> RESENHAS
-            </Link>
-          </li>
-
-          {/* SÓ APARECE SE ESTIVER LOGADO */}
-          {logado && (
+          <ul>
             <li>
-              <Link to="/perfil" className="item-header" onClick={fecharMenu}>
-                <FontAwesomeIcon icon={faUser} /> PERFIL
+              <Link to="/" className="item-header" onClick={fecharMenu}>
+                <FontAwesomeIcon icon={faHouse} /> <span>HOME</span>
               </Link>
             </li>
-          )}
-
-          {/* BOTÃO DE TEMA */}
-          <li id="tema">
-            <button
-              className="btn-tema"
-              onClick={(e) => {
-                e.stopPropagation();
-                trocarTema();
-              }}
-            >
-              <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
-            </button>
-            <span>TEMA</span>
-          </li>
-
-          {/* LOGOUT */}
-          {logado && (
-            <li
-            id="logout"
-            className="item-header"
-            onClick={() => {
-              fecharMenu();
-              handleLogout();
-            }}
-            style={{ cursor: "pointer" }}
-            >
-              <FontAwesomeIcon icon={faCircleXmark} />
-              <span>SAIR</span>
-            </li>
-          )}
-
-          {/* LOGIN (SE NÃO ESTIVER LOGADO) */}
-          {!logado && (
             <li>
-              <Link to="/login" className="item-header" onClick={fecharMenu}>
-                <FontAwesomeIcon icon={faUser} /> LOGIN
+              <Link to="/jogos" className="item-header" onClick={fecharMenu}>
+                <FontAwesomeIcon icon={faGamepad} /> <span>JOGOS</span>
               </Link>
             </li>
-          )}
-        </ul>
-      </nav>
-          </div>
+            <li>
+              <Link to="/comunidade" className="item-header" onClick={fecharMenu}>
+                <FontAwesomeIcon icon={faUsers} /> <span>RESENHAS</span>
+              </Link>
+            </li>
+
+            {logado && (
+              <li>
+                <Link to="/perfil" className="item-header" onClick={fecharMenu}>
+                  <FontAwesomeIcon icon={faUser} /> <span>PERFIL</span>
+                </Link>
+              </li>
+            )}
+
+            <li id="tema">
+              <button className="btn-tema" onClick={trocarTema}>
+                <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
+              </button>
+              <span className="txt-tema">TEMA</span>
+            </li>
+
+            {logado ? (
+              <li id="logout" className="item-header" onClick={() => { fecharMenu(); handleLogout(); }}>
+                <FontAwesomeIcon icon={faCircleXmark} /> <span>SAIR</span>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login" className="item-header" onClick={fecharMenu}>
+                  <FontAwesomeIcon icon={faUser} /> <span>LOGIN</span>
+                </Link>
+              </li>
+            )}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

@@ -1,9 +1,9 @@
 import "../estilos/login.css";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
-
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 //criando tela de login
 function Login(){
@@ -47,6 +47,11 @@ function Login(){
 
     return(
         <main className="tela-login">
+            {/* Botão para voltar para Home */}
+            <Link to="/" className="btn-voltar-home">
+                <FontAwesomeIcon icon={faArrowLeft} /> Voltar para Home
+            </Link>
+
             <h1>MyGameList</h1>
 
             <form action="#" className="card-login" onSubmit={logar}>
@@ -57,7 +62,7 @@ function Login(){
                 <input type="password" placeholder="Sua senha" id="isenha" name="senha" />
 
                 {erro && (
-                    <p style={{ color: "red", marginTop: "10px" }}>{erro}</p>
+                    <p style={{ color: "red", marginTop: "10px", textAlign: "center" }}>{erro}</p>
                 )}
 
                 <button className="btn-login">Entrar</button>

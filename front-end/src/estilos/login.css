@@ -1,12 +1,35 @@
-
-
 .tela-login, .tela-cadastro {
     padding: 20px;
-    margin-top: 80px;
+    min-height: 100vh; /* Ajustado para centralizar melhor na tela */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+/* Estilo do novo botão de voltar */
+.btn-voltar-home {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: var(--texto-secundario);
+    font-family: var(--font-titulo);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--borda);
+}
+
+.btn-voltar-home:hover {
+    color: var(--acao-secundaria);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
 }
 
 .card-login, .card-cadastro {
@@ -69,6 +92,12 @@
     color: white;
     font-size: 1.4em;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 15px var(--acao-secundaria);
 }
 
 .trocar {
@@ -80,5 +109,18 @@
 .trocar .cadastro, .login  {
     margin-left: 7px;
     font-weight: bold;
-    color: var(--texto-secundario);
+    color: var(--acao-primaria); /* Alterado para a cor de destaque do seu tema */
+    text-decoration: none;
+}
+
+.trocar .cadastro:hover {
+    text-decoration: underline;
+}
+
+/* Ajuste mobile para o botão de voltar */
+@media (max-width: 600px) {
+    .btn-voltar-home {
+        position: static;
+        margin-bottom: 20px;
+    }
 }
