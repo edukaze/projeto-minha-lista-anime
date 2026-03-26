@@ -203,4 +203,8 @@
   .btn-ver-mais:hover {
     transform: scale(1.03); 
   }
+  .btn-mais-sobre-jogo:hover{
+     transform: scale(1.03); 
+    background-color: var(--acao-primaria);
+  }
 }

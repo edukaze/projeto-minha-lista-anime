@@ -132,4 +132,105 @@ h1.logo{
   transform: scale(1.1);
 }
 
+/*Desktop */
+@media (min-width: 930px) {
+  
+  #header .topo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    max-width: 1200px; 
+    margin: 0 auto;    
+    padding: 0 20px;
+  }
 
+  /*  Esconde o botão de abrir o menu (Hamburguer) */
+  .hamburguer {
+    display: none;
+  }
+
+  /* Transforma o Menu Mobile em uma Barra Horizontal */
+  .menu-mobile {
+    position: static;    
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;       
+    transform: none;     
+    padding: 0;
+  }
+
+  /*  Alinha a lista (UL) horizontalmente */
+  .menu-mobile ul {
+    flex-direction: row; 
+    align-items: center;
+    gap: 25px;           
+  }
+
+
+  /*  Ajusta o tamanho dos itens (2.5em é muito pro desktop) */
+  .menu-mobile ul li {
+    font-size: 1.7rem;     
+  }
+
+  /*  Esconde elementos que só fazem sentido no celular */
+  .menu-mobile .fechar, 
+  .overlay {
+    display: none !important;
+  }
+
+  /*  Ajuste opcional para o Botão de Tema no Desktop */
+  #tema {
+
+    margin-top: 0;
+    flex-direction: row-reverse; 
+  }
+  .btn-tema{
+    width: 30px;
+    height: 30px;
+  }
+
+  .item-header {
+    padding: 8px 15px; /* Dá espaço para o fundo aparecer sem apertar o texto */
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--texto-primario);
+    position: relative;
+  }
+
+  .item-header:hover {
+    /* Cria um fundo semi-transparente para dar contraste */
+    background-color: rgba(255, 255, 255, 0.1); 
+    
+    /* Muda a cor do texto para uma cor sólida e forte */
+    color: var(--btn-icon) !important; 
+    
+    /* Adiciona um brilho sutil na caixa, não no texto (para não embaçar a letra) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    
+    transform: translateY(-2px);
+  }
+
+  /* Se quiser a linha embaixo também, ela fica bem discreta aqui */
+  .item-header::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 15px;
+    right: 15px;
+    height: 2px;
+    background-color: var(--acao-secundaria);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .item-header:hover::after {
+    transform: scaleX(1);
+  }
+  
+}

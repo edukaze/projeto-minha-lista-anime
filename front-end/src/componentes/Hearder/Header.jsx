@@ -65,7 +65,6 @@ function Header() {
           <FontAwesomeIcon icon={faBars} />
         </button>
         <h1 className="logo">MyGamesList</h1>
-      </div>
 
       {menuAberto && <div className="overlay" onClick={fecharMenu}></div>}
 
@@ -119,13 +118,13 @@ function Header() {
           {/* LOGOUT */}
           {logado && (
             <li
-              id="logout"
-              className="item-header"
-              onClick={() => {
-                fecharMenu();
-                handleLogout();
-              }}
-              style={{ cursor: "pointer" }}
+            id="logout"
+            className="item-header"
+            onClick={() => {
+              fecharMenu();
+              handleLogout();
+            }}
+            style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon icon={faCircleXmark} />
               <span>SAIR</span>
@@ -142,6 +141,7 @@ function Header() {
           )}
         </ul>
       </nav>
+          </div>
     </header>
   );
 }
