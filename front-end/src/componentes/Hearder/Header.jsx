@@ -88,13 +88,6 @@ function Header() {
               </li>
             )}
 
-            <li id="tema">
-              <button className="btn-tema" onClick={trocarTema}>
-                <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
-              </button>
-              <span className="txt-tema">TEMA</span>
-            </li>
-
             {logado ? (
               <li id="logout" className="item-header" onClick={() => { fecharMenu(); handleLogout(); }}>
                 <FontAwesomeIcon icon={faCircleXmark} /> <span>SAIR</span>
@@ -106,6 +99,13 @@ function Header() {
                 </Link>
               </li>
             )}
+
+            <li id="tema">
+              <button className="btn-tema" onClick={trocarTema}>
+                <FontAwesomeIcon icon={tema === "claro" ? faMoon : faSun} />
+              </button>
+              <span className="txt-tema"></span>
+            </li>
           </ul>
         </nav>
       </div>

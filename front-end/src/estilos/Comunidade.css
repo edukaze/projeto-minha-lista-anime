@@ -90,13 +90,14 @@
 
 .btn-mais-sobre-jogo {
   background-color: var(--cor-primaria);
-  color: #fff;
+  color: var(--texto-primario);
   box-shadow: 0 0 20px var(--cor-primaria); /* Efeito Glow */
   transform: scale(1.02);
 }
 
 /* Ajuste no botão fechar para não ficar colado */
 .modal-fechar {
+  color: var(--texto-primario);
   margin-top: 5px !important;
   opacity: 0.8;
 }
@@ -205,6 +206,6 @@
   }
   .btn-mais-sobre-jogo:hover{
      transform: scale(1.03); 
-    background-color: var(--acao-primaria);
+    background-color: var(--acao-secundaria);
   }
 }
