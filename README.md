@@ -1,70 +1,54 @@
-# Getting Started with Create React App
+# 🎮 MyGamesList
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+O **MyGamesList** é uma plataforma Full Stack inspirada em sites de catalogação como *MyAnimeList* e *Letterboxd*, mas focada exclusivamente no universo dos videogames. O objetivo é permitir que os usuários gerenciem sua biblioteca, acompanhem o progresso de seus jogos e compartilhem avaliações com outros membros da comunidade.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Funcionalidades Principais
 
-### `npm start`
+* **Catálogo Dinâmico:** Navegação por carrosséis horizontais de jogos (Destaques, Mais Bem Avaliados e Recentes).
+* **Gestão de Biblioteca:** Sistema de status para marcar jogos como:
+    * 🕹️ **Jogando**
+    * 🏆 **Zerado**
+    * ❌ **Dropado**
+    * 📅 **Planejado**
+* **Comunidade & Resenhas:** Espaço para ler e escrever críticas detalhadas sobre cada título.
+* **Perfil Personalizado:** Página do usuário para gerenciar suas próprias resenhas e histórico.
+* **Tema Adaptável:** Suporte a Modo Claro e Modo Escuro (Light/Dark Mode) com persistência via `localStorage`.
+* **Design Mobile-First:** Interface totalmente otimizada para celulares, com suporte a gestos de toque (scroll lateral).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tecnologias Utilizadas
 
-### `npm test`
+### Frontend
+- **React.js**: Biblioteca principal para a interface.
+- **React Router Dom**: Gerenciamento de rotas e navegação.
+- **CSS3**: Estilização com variáveis (`root`), Flexbox e Grid System.
+- **Lucide & FontAwesome**: Conjunto de ícones vetoriais.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
+- **Node.js**: Ambiente de execução.
+- **Express**: Framework para a construção da API.
+- **MySQL**: Banco de dados relacional para persistência de jogos e usuários.
+- **JWT (JSON Web Token)**: Sistema de autenticação e proteção de rotas.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎨 Identidade Visual
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O projeto segue uma estética **Gamer/Neon**, utilizando contrastes altos e efeitos de brilho (*glow*).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **Cores de Destaque:** * Primária: `var(--cor-primaria)` (Roxo Gamer)
+    * Ação: `var(--acao-primaria)` (Amarelo/Ouro para estrelas)
+    * Perigo: `var(--acao-secundaria)` (Vermelho/Rosa para alertas e exclusão)
+* **Tipografia:** * Títulos: *Russo One* (Estética de jogos)
+    * Textos: *VT323* (Estética Pixel Art) ou *Roboto*.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📦 Como Instalar e Rodar
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Clone o projeto:**
+   ```bash
+   git clone [https://github.com/seu-usuario/mygameslist.git](https://github.com/seu-usuario/mygameslist.git)
